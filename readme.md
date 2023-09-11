@@ -93,37 +93,37 @@ A última fase envolveu a configuração do ambiente de produção e a entrega f
 
 #### Requisitos Funcionais para Clientes
 
-| Código | Identificação | Classificação | Ator | Objetivo |
-| --- | --- | --- | --- | --- |
-| RF001 | Navegar Produtos  | Essencial | Cliente | Visualizar uma lista de produtos disponíveis |
-| RF002 | Realizar Pedido   | Essencial | Cliente | Adicionar produtos ao carrinho e confirmar o pedido |
-| RF003 | Consultar Pedido   | Essencial | Cliente | Visualizar informações do pedido em tempo real |
-| RF004 | Ver Histórico de Pedidos| Essencial | Cliente | Visualizar e possivelmente refazer pedidos anteriores |
+| Código | Identificação            | Classificação | Ator    | Objetivo                                              |
+| ------ | ------------------------ | ------------- | ------- | ----------------------------------------------------- |
+| RF001  | Navegar Produtos         | Essencial     | Cliente | Visualizar uma lista de produtos disponíveis          |
+| RF002  | Realizar Pedido          | Essencial     | Cliente | Adicionar produtos ao carrinho e confirmar o pedido   |
+| RF003  | Consultar Pedido         | Essencial     | Cliente | Visualizar informações do pedido em tempo real        |
+| RF004  | Ver Histórico de Pedidos | Essencial     | Cliente | Visualizar e possivelmente refazer pedidos anteriores |
 
 ---
 
 #### Requisitos Funcionais para Administradores do Sistema
 
-| Código | Identificação | Classificação | Ator | Objetivo |
-| --- | --- | --- | --- | --- |
-| RF005 | Gerenciar produtos | Essencial | Administrador do Sistema | Adicionar, remover ou atualizar produtos |
-| RF006 | Ver Métricas do Sistema | Essencial | Administrador do Sistema | Visualizar análises relacionadas a pedidos e vendas |
+| Código | Identificação           | Classificação | Ator                     | Objetivo                                            |
+| ------ | ----------------------- | ------------- | ------------------------ | --------------------------------------------------- |
+| RF005  | Gerenciar produtos      | Essencial     | Administrador do Sistema | Adicionar, remover ou atualizar produtos            |
+| RF006  | Ver Métricas do Sistema | Essencial     | Administrador do Sistema | Visualizar análises relacionadas a pedidos e vendas |
 
 ---
 
 #### Requisitos Não Funcionais
 
-| Código | Identificação | Classificação | Objetivo |
-| --- | --- | --- | --- |
-| RNF001 | Escalabilidade | Essencial | O sistema deve ser escalável horizontalmente |
-| RNF002 | Disponibilidade | Essencial | O sistema deve estar disponível 24/7 |
-| RNF003 | Redundância | Essencial | Os dados devem ser replicados para tolerância a falhas |
-| RNF004 | Segurança | Essencial | Transmissões de dados criptografadas, autenticação forte |
-| RNF005 | Desempenho | Essencial | Baixa latência para todas as operações |
-| RNF006 | Usabilidade | Essencial | Interface de usuário intuitiva e multiplataforma |
-| RNF007 | Recuperação de Desastres | Essencial | Backups regulares e processo de recuperação bem definido |
-| RNF008 | Manutenibilidade | Essencial | Fácil de atualizar e bem documentado |
-| RNF009 | Conformidade | Essencial | Conformidade com regulamentações legais como o GDPR|
+| Código | Identificação            | Classificação | Objetivo                                                 |
+| ------ | ------------------------ | ------------- | -------------------------------------------------------- |
+| RNF001 | Escalabilidade           | Essencial     | O sistema deve ser escalável horizontalmente             |
+| RNF002 | Disponibilidade          | Essencial     | O sistema deve estar disponível 24/7                     |
+| RNF003 | Redundância              | Essencial     | Os dados devem ser replicados para tolerância a falhas   |
+| RNF004 | Segurança                | Essencial     | Transmissões de dados criptografadas, autenticação forte |
+| RNF005 | Desempenho               | Essencial     | Baixa latência para todas as operações                   |
+| RNF006 | Usabilidade              | Essencial     | Interface de usuário intuitiva e multiplataforma         |
+| RNF007 | Recuperação de Desastres | Essencial     | Backups regulares e processo de recuperação bem definido |
+| RNF008 | Manutenibilidade         | Essencial     | Fácil de atualizar e bem documentado                     |
+| RNF009 | Conformidade             | Essencial     | Conformidade com regulamentações legais como o GDPR      |
 
 
 ### Diagrama C4 - Contexto
@@ -149,15 +149,15 @@ A última fase envolveu a configuração do ambiente de produção e a entrega f
 
 ## Cronograma do Projeto
 
-| Semana | Entrega Prevista | Descrição |
-| --- | --- | --- |
-| 1-4 | Documentação | Criação da documentação inicial e planejamento do projeto |
-| 4-7 | Desenvolvimento Backend | Implementação dos serviços e APIs do backend em C# |
-| 7-9 | Desenvolvimento Frontend | Desenvolvimento da interface do usuário em Vue.js |
-| 10 | Testes | Testes unitários com xUnit e Moq |
-| 11 | Implantação | Implantação do sistema em ambiente de produção |
-| 12-13 | Revisão | Revisão e ajustes finais |
-| 14 | Entrega Final | Entrega do projeto e documentação final |
+| Semana | Entrega Prevista         | Descrição                                                 |
+| ------ | ------------------------ | --------------------------------------------------------- |
+| 1-4    | Documentação             | Criação da documentação inicial e planejamento do projeto |
+| 4-7    | Desenvolvimento Backend  | Implementação dos serviços e APIs do backend em C#        |
+| 7-9    | Desenvolvimento Frontend | Desenvolvimento da interface do usuário em Vue.js         |
+| 10     | Testes                   | Testes unitários com xUnit e Moq                          |
+| 11     | Implantação              | Implantação do sistema em ambiente de produção            |
+| 12-13  | Revisão                  | Revisão e ajustes finais                                  |
+| 14     | Entrega Final            | Entrega do projeto e documentação final                   |
 
 
 ---
@@ -169,63 +169,63 @@ O escopo inclui o desenvolvimento de um sistema de gerenciamento de pedidos base
 ### Escopo do Desenvolvimento do Software
 
 1. **Documentação**
-   1.1. Diagramas
-       - Diagrama de Caso de Uso
-       - Diagrama de Contêineres C4
-       - Diagrama de Contexto C4
-   1.2. Requisitos Funcionais e Não Funcionais
+   1. Diagramas
+      1. Diagrama de Caso de Uso
+      2. Diagrama de Contêineres C4
+      3. Diagrama de Contexto C4
+   2. Requisitos Funcionais e Não Funcionais
 
 2. **Desenvolvimento Backend**
-   2.1. Configuração Inicial
-       - Configuração do Ambiente de Desenvolvimento
-       - Definição de Tecnologias e Bibliotecas
-   2.2. Implementação de APIs
-       - API de Gestão de Pedidos
-       - API de Autenticação
-   2.3. Implementação do Repositório com Entity Framework Core
-       - Modelagem do Banco de Dados
-       - Implementação de CRUD para Entidades
-   2.4. Implementação de Testes Unitários com xUnit e Moq
-       - Testes para Serviços de Negócio
-       - Testes para Repositórios
-   2.5. Segurança
-       - Implementação de Autenticação e Autorização
+   1. Configuração Inicial
+      1. Configuração do Ambiente de Desenvolvimento
+      2. Definição de Tecnologias e Bibliotecas
+   2. Implementação de APIs
+      1. API de Gestão de Pedidos
+      2. API de Autenticação
+   3. Implementação do Repositório com Entity Framework Core
+      1. Modelagem do Banco de Dados
+      2. Implementação de CRUD para Entidades
+   4. Implementação de Testes Unitários com xUnit e Moq
+      1. Testes para Serviços de Negócio
+      2. Testes para Repositórios
+   5. Segurança
+      1. Implementação de Autenticação e Autorização
 
 3. **Desenvolvimento Frontend**
-   3.1. Configuração Inicial
-       - Configuração do Ambiente de Desenvolvimento
-       - Definição de Tecnologias e Bibliotecas
-   3.2. Desenvolvimento de Componentes em Vue.js
-       - Componentes de Interface de Usuário
-       - Componentes de Navegação
-   3.3. Integração com APIs do Backend
-       - Integração com API de Gestão de Pedidos
-       - Integração com API de Autenticação
-   3.4. Testes de Interface
-       - Testes Unitários para Componentes Vue.js
-       - Testes de Integração de Ponta a Ponta
-   3.5. Otimização de Performance
-       - Lazy Loading
-       - Otimização de Assets
+   1. Configuração Inicial
+      1. Configuração do Ambiente de Desenvolvimento
+      2. Definição de Tecnologias e Bibliotecas
+   2. Desenvolvimento de Componentes em Vue.js
+      1. Componentes de Interface de Usuário
+      2. Componentes de Navegação
+   3. Integração com APIs do Backend
+      1. Integração com API de Gestão de Pedidos
+      2. Integração com API de Autenticação
+   4. Testes de Interface
+      1. Testes Unitários para Componentes Vue.js
+      2. Testes de Integração de Ponta a Ponta
+   5. Otimização de Performance
+      1. Lazy Loading
+      2. Otimização de Assets
 
 4. **Integração com Serviços Externos**
-   4.1. Integração com Zenvia para Notificações
-   4.2. Configuração de Banco de Dados em AWS RDS
+   1. Integração com Zenvia para Notificações
+   2. Configuração de Banco de Dados em AWS RDS
 
 5. **Testes**
-   5.1. Testes Unitários
-   5.2. Testes de Integração
-   5.3. Testes de Carga e Desempenho
+   1. Testes Unitários
+   2. Testes de Integração
+   3. Testes de Carga e Desempenho
 
 6. **Implantação**
-   6.1. Configuração de Ambiente de Produção
-   6.2. Deploy do Backend em AWS ECS
-   6.3. Deploy do Frontend em Vercel
+   1. Configuração de Ambiente de Produção
+   2. Deploy do Backend em AWS ECS
+   3. Deploy do Frontend em Vercel
 
 7. **Entrega Final**
-   7.1. Documentação Final
-   7.2. Código Fonte
-   7.3. Relatório de Testes
+   1. Documentação Final
+   2. Código Fonte
+   3. Relatório de Testes
 
 ---
 
