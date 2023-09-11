@@ -53,7 +53,7 @@ A primeira grande entrega foi estrategicamente focada em estabelecer uma base s�
 - **Arquitetura**: O backend foi desenvolvido utilizando arquitetura Domain-Driven Design (DDD) em C# com dotnet 6.0. Essa abordagem ajudou na criação de uma base de código com possibilidade de escalonamento e sustentável. O padrão Repository foi implementado usando Entity Framework Core para gerenciar operações de dados, garantindo uma separação clara de interesses.
 
 #### Quality Assurance:
-To maintain high quality, each task had to meet certain criteria before moving to the next column on the Kanban board. Code reviews, unit tests, and integration tests were integral parts of the workflow.
+Para manter a alta qualidade, cada tarefa precisava atender a determinados critérios antes de passar para a próxima coluna do quadro Kanban. Code review e testes unitários eram partes essenciais do fluxo de trabalho.
 
 - **Teste Unitário**: Os testes unitários foram implementados usando xUnit e a simulação foi feita usando Moq. Isso garantiu que cada componente fosse testado isoladamente, tornando a base de código mais robusta e mais fácil de manter.
 
@@ -72,7 +72,7 @@ To maintain high quality, each task had to meet certain criteria before moving t
 - Atualizar produtos: Permite que o administrador atualize os produtos existentes no sistema.
 - Deletar produtos: Permite que o administrador remova produtos do sistema.
 
-[Diagrama de caso de uso](Portfolio.Documentos/UseCase.png)
+![Diagrama de caso de uso](Portfolio.Documentos/UseCase.png)
 
 ### Requisitos Funcionais
 
@@ -113,11 +113,11 @@ To maintain high quality, each task had to meet certain criteria before moving t
 
 ### Diagrama C4 - Contexto
 
-[Diagrama C4 - Contexto](Portfolio.Documentos/C4-Contexto.png)
+![Diagrama C4 - Contexto](Portfolio.Documentos/C4-Contexto.png)
 
 ### Diagrama C4 - Container
 
-[Diagrama C4 - Container](Portfolio.Documentos/C4-Container.png)
+![Diagrama C4 - Container](Portfolio.Documentos/C4-Container.png)
 
 ---
 
