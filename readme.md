@@ -219,3 +219,79 @@ O escopo inclui o desenvolvimento de um sistema de gerenciamento de pedidos base
 O projeto é voltado para lojas locais que desejam ampliar sua base de clientes e agilizar seus processos de pedidos.
 
 ---
+
+## Iniciando o Projeto
+
+Este projeto utiliza diversas tecnologias e serviços. Abaixo estão as instruções básicas para configurar cada parte do projeto.
+
+### Pré-requisitos
+
+- .NET SDK para C#
+- Node.js e npm para Vue.js
+- Conta na Zenvia (opcional para notificações)
+- SQL Server LocalDB ou SQL Server Express para execução local do banco de dados
+
+### Configuração do Backend em C#
+
+1. **Clone o Repositório**
+    ```bash
+    git clone https://github.com/jvst1/Portfolio.git
+    ```
+   
+2. **Navegue até o diretório do backend**
+    ```bash
+    cd Portfolio/backend
+    ```
+
+3. **Restaure os pacotes NuGet**
+    ```bash
+    dotnet restore
+    ```
+
+4. **Execute o Projeto**
+    ```bash
+    dotnet run
+    ```
+
+### Configuração do Frontend em Vue.js
+
+1. **Navegue até o diretório do frontend**
+    ```bash
+    cd Portfolio/frontend
+    ```
+
+2. **Instale as Dependências**
+    ```bash
+    npm install
+    ```
+
+3. **Execute o Projeto**
+    ```bash
+    npm run serve
+    ```
+
+### Configuração da Zenvia para Notificações (Opcional)
+
+1. **Acesse o painel da Zenvia e configure seu token de API.**
+
+2. **Adicione as variáveis de ambiente relacionadas à Zenvia no seu projeto backend.**
+
+### Configuração do Banco de Dados
+
+#### Opção 1: AWS RDS (Opcional)
+
+1. **Acesse o console da AWS e configure uma nova instância do RDS para SQL Server.**
+
+2. **Atualize a string de conexão no seu projeto backend.**
+
+#### Opção 2: Execução Local
+
+1. **Instale o SQL Server LocalDB ou SQL Server Express.**
+
+2. **Atualize a string de conexão no seu projeto backend para apontar para sua instância local.**
+
+### Nota sobre Execução Local
+
+Este projeto foi configurado para rodar inteiramente na máquina do usuário, sem necessidade de deploy em servidores externos.
+
+---
