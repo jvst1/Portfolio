@@ -45,17 +45,32 @@ Os clientes acharão o sistema intuitivo e fácil de usar. Eles serão capazes d
 
 O trabalho foi organizado utilizando uma abordagem Kanban, o que permitiu maior flexibilidade e foco na entrega contínua de valor. O quadro Kanban foi dividido em várias colunas, como "Novo", "Backlog", "Em desenvolvimento", "Em revisão" e "Feito", para rastrear o status de várias tarefas.
 
+Para manter a alta qualidade, cada tarefa precisava atender a determinados critérios antes de passar para a próxima coluna do quadro Kanban. Code review e testes unitários eram partes essenciais do fluxo de trabalho.
+
 #### Fase inicial: Arquitetura e documentação
 A primeira grande entrega foi estrategicamente focada em estabelecer uma base sólida para o projeto. Isso incluiu:
 
-- **Documentação**: Documentação abrangente foi criada para descrever a arquitetura do sistema, os requisitos funcionais e não funcionais e os casos de uso.
+- **Documentação**: Diagramas de Caso de Uso, Diagramas de Contêineres C4, Diagramas de Contexto C4 e Requisitos Funcionais e Não Funcionais foram criados.
+
+- **Arquitetura**: O backend foi desenvolvido utilizando arquitetura Domain-Driven Design (DDD) em C# com dotnet 6.0. O padrão Repository foi implementado usando Entity Framework Core.
+
+#### Desenvolvimento Backend e Frontend
+Nesta fase, o foco foi na implementação de funcionalidades e integrações:
+
+- **Backend**: Desenvolvimento de APIs, implementação de testes unitários com xUnit e Moq e segurança.
   
-- **Arquitetura**: O backend foi desenvolvido utilizando arquitetura Domain-Driven Design (DDD) em C# com dotnet 6.0. Essa abordagem ajudou na criação de uma base de código com possibilidade de escalonamento e sustentável. O padrão Repository foi implementado usando Entity Framework Core para gerenciar operações de dados, garantindo uma separação clara de interesses.
+- **Frontend**: Desenvolvimento de componentes em Vue.js, testes de interface e otimização de performance.
 
-#### Quality Assurance:
-Para manter a alta qualidade, cada tarefa precisava atender a determinados critérios antes de passar para a próxima coluna do quadro Kanban. Code review e testes unitários eram partes essenciais do fluxo de trabalho.
+#### Integração com Serviços Externos
+Nesta fase, o foco foi na integração com serviços externos como Zenvia para notificações e configuração do banco de dados na Amazon Web Services Relational Database Service.
 
-- **Teste Unitário**: Os testes unitários foram implementados usando xUnit e a simulação foi feita usando Moq. Isso garantiu que cada componente fosse testado isoladamente, tornando a base de código mais robusta e mais fácil de manter.
+#### Testes
+Os testes unitários foram uma parte crucial do desenvolvimento:
+
+- **Teste Unitário**: Os testes unitários foram implementados usando xUnit e a simulação foi feita usando Moq.
+
+#### Implantação e Entrega Final
+A última fase envolveu a configuração do ambiente de produção e a entrega final do projeto, que incluiu a documentação final, o código-fonte e o relatório de testes.
 
 ### Diagrama de caso de uso:
 
