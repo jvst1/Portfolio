@@ -1,0 +1,46 @@
+﻿using AutoMapper;
+using IdentityServer4.EntityFramework.Entities;
+using Portfolio.Domain.Entities.Cad;
+using Portfolio.Domain.Messaging.Cad;
+using Portfolio.Domain.Messaging.Identity;
+using System;
+
+namespace Portfolio.Crosscutting.Mapping
+{
+    public static class AutoMapperConfig
+    {
+        public static Action<IMapperConfigurationExpression> GetAllMappings()
+        {
+            return cfg =>
+            {
+                #region Usuario 
+
+                cfg.CreateMap<Usuario, UsuarioResponse>(MemberList.None).ReverseMap();
+
+                #endregion
+
+                #region Identity
+
+                cfg.CreateMap<ClientRequest, Client>(MemberList.None).ReverseMap();
+                cfg.CreateMap<Client, ClientResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<ClientSecretRequest, ClientSecret>(MemberList.None).ReverseMap();
+                cfg.CreateMap<ClientSecret, ClientSecretResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<ClientScopesRequest, ClientScope>(MemberList.None).ReverseMap();
+                cfg.CreateMap<ClientScope, ClientScopesResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<ApiResourceRequest, ApiResource>(MemberList.None).ReverseMap();
+                cfg.CreateMap<ApiResource, ApiResourceResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<ApiScopeRequest, ApiScope>(MemberList.None).ReverseMap();
+                cfg.CreateMap<ApiScope, ApiScopeResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<ApiResourceSecretsRequest, ApiResourceSecret>(MemberList.None).ReverseMap();
+                cfg.CreateMap<ApiResourceSecret, ApiResourceSecretsResponse>(MemberList.None).ReverseMap();
+
+                #endregion
+            };
+        }
+    }
+}

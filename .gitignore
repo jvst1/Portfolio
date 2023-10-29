@@ -1,0 +1,20 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/Portfolio.Api/.vs/Portfolio.Api
+*.user
+/Portfolio.Api/Portfolio.Api/obj
+/Portfolio.Api/obj
+/Portfolio.Data/obj
+/Portfolio.Crosscutting/obj
+/Portfolio.Application/obj
+/Portfolio.Api/.vs/ProjectEvaluation
+/Portfolio.Domain/obj
+/Portfolio.Infrastructure/obj
+/Portfolio.Crosscutting/bin/Debug/net6.0
+/Portfolio.Application/bin/Debug/net6.0
+/Portfolio.Api/bin/Debug/net6.0
+/Portfolio.Infrastructure/bin/Debug/net6.0
+/Portfolio.Domain/bin/Debug/net6.0
+/Portfolio.Data/bin/Debug/net6.0
