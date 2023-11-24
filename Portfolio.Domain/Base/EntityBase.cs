@@ -10,13 +10,12 @@ namespace Portfolio.Domain.Base
     {
         private readonly List<BusinessRule> _brokenRules = new List<BusinessRule>();
 
-        // Tornando abstract podemos forçar as entidades a implementarem suas lógicas para o Código
-        // Entidades que não possem código por exemplo, podem apontar para o ID.
-        // Desta forma mantém-se genérico e funcional, matendo o Código como principal, mesmo que não exista na tabela.
         [AutomaticUpdateIgnore]
+        [Key]
         public Guid Codigo { get; set; }
 
         [AutomaticUpdateIgnore]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public TIdType ID { get; set; }
 
         [NotMapped]

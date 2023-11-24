@@ -1,7 +1,9 @@
-﻿using Portfolio.Domain.Base;
+﻿using Newtonsoft.Json;
+using Portfolio.Domain.Base;
 using Portfolio.Infrastructure;
 using Portfolio.Infrastructure.Attributes;
 using Portfolio.Infrastructure.Enums;
+using Portfolio.Infrastructure.Extensions;
 using Portfolio.Infrastructure.Security;
 
 namespace Portfolio.Domain.Entities.Cad
@@ -14,8 +16,22 @@ namespace Portfolio.Domain.Entities.Cad
         [Truncate(100)]
         public string Email { get; set; }
 
+        [Truncate(255)]
+        public string Nome { get; set; }
+
+        [Truncate(14)]
+        public string DocumentoFederal { get; set; }
+
         [Truncate(100)]
         public string TelefoneCelular { get; set; }
+
+        [Truncate(100)]
+        public string TempoEntrega { get; set; }
+
+        public decimal ValorMinimoPedido { get; set; }
+
+        [Truncate(100)]
+        public string Tags { get; set; }
 
         public SituacaoUsuario? Situacao { get; set; }
 
@@ -33,6 +49,7 @@ namespace Portfolio.Domain.Entities.Cad
         public string SenhaAPI { get; set; }
 
         public DateTime? DtInclusao { get; set; }
+        public DateTime? DtAlteracao { get; set; }
 
         [Truncate(100)]
         public string RefreshToken { get; set; }
@@ -54,9 +71,21 @@ namespace Portfolio.Domain.Entities.Cad
 
         protected override void InsertValidate()
         {
+
             if (!Util.ValidaEmail(Email))
                 AddBrokenRule(new BusinessRule("O endereço de e-mail fornecido é inválido. Por favor, insira um endereço de e-mail válido no formato usuario@dominio.com", nameof(Email)));
 
+            if (!Tags.IsNullOrWhiteSpace())
+            {
+                if (Tags.Length > 100)
+                {
+                    var tagArray = JsonConvert.DeserializeObject<List<string>>(Tags);
+                    tagArray.RemoveAt(tagArray.Count - 1);
+                    Tags = JsonConvert.SerializeObject(tagArray);
+                }
+            }
+
+            DocumentoFederal = Util.DeixaNumeros(DocumentoFederal);
             TelefoneCelular = Util.DeixaNumeros(TelefoneCelular);
             Situacao = SituacaoUsuario.Cadastrado;
             DtInclusao = DateTime.Now;
@@ -64,7 +93,9 @@ namespace Portfolio.Domain.Entities.Cad
 
         protected override void UpdateValidate()
         {
+            DocumentoFederal = Util.DeixaNumeros(DocumentoFederal);
             TelefoneCelular = Util.DeixaNumeros(TelefoneCelular);
+            DtAlteracao = DateTime.Now;
         }
     }
 }

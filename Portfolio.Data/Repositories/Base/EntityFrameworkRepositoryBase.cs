@@ -41,6 +41,7 @@ namespace Portfolio.Data.Repositories.Base
         public virtual void Update(TEntity entity)
         {
             Context.Update(entity);
+            Context.SaveChanges();
         }
 
         public virtual void Remove(TEntity entity)

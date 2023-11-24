@@ -65,6 +65,7 @@ namespace Portfolio.Application.Services
 
             return new LoginResponse
             {
+                CodigoUsuario = usuario.Codigo,
                 Email = usuario.Email,
                 Identificador = usuario.Identificador,
                 AccessToken = webToken.AccessToken,

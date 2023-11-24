@@ -15,8 +15,17 @@ namespace Portfolio.Crosscutting.Mapping
             {
                 #region Usuario 
 
+                cfg.CreateMap<Usuario, UsuarioRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<Usuario, UsuarioComercianteRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Usuario, UsuarioResponse>(MemberList.None).ReverseMap();
 
+                cfg.CreateMap<UsuarioEndereco, UsuarioEnderecoPostRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<UsuarioEndereco, UsuarioEnderecoPutRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<UsuarioEndereco, UsuarioEnderecoResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<Categoria, CategoriaPostRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<Categoria, CategoriaPutRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<Categoria, CategoriaResponse>(MemberList.None).ReverseMap();
                 #endregion
 
                 #region Identity

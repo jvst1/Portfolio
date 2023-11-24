@@ -5,6 +5,7 @@ using Portfolio.Domain.Messaging.Cad;
 
 namespace Portfolio.Api.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticationController : PortfolioControllerBase
     {
         private readonly AuthenticationApplicationService _authenticationApplicationService;
@@ -13,7 +14,6 @@ namespace Portfolio.Api.Controllers
             _authenticationApplicationService = authenticationApplicationService;
         }
 
-        [AllowAnonymous]
         [HttpPost("Login")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginResponse))]
         public ActionResult<LoginResponse> Login(LoginRequest request)
@@ -22,7 +22,6 @@ namespace Portfolio.Api.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
         [HttpDelete("Logout")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Logout()
@@ -31,7 +30,6 @@ namespace Portfolio.Api.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
         [HttpPost("RefreshToken")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginResponse))]
         public ActionResult<LoginResponse> RefreshToken(UsuarioRefreshTokenRequest dto)
@@ -40,7 +38,6 @@ namespace Portfolio.Api.Controllers
             return Ok(result);
         }
 
-        [AllowAnonymous]
         [HttpDelete("RefreshToken/{token}/Revoke")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public IActionResult RevokeRefreshToken(string token)

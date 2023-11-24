@@ -34,7 +34,7 @@ namespace Portfolio.Data.Context
         private static EfContext CreateContext(IConfiguration configuration, string identificador, CodigoUsuarioHelper codigoUsuarioHelper)
         {
             var optionsBuilder = new DbContextOptionsBuilder<EfContext>();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("connectionString")); //todo: Set ConnectionString
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("Portfolio")); //todo: Set ConnectionString
 
             return new EfContext(optionsBuilder.Options, codigoUsuarioHelper, identificador);
         }
@@ -142,7 +142,7 @@ namespace Portfolio.Data.Context
         public int SaveChanges()
         {
             var tracked = _db.ChangeTracker.Entries().ToList();
-            var changes = _db.SaveChanges();
+            var changes = _db.SaveChanges(true);
 
             foreach (var dbEntityEntry in tracked)
             {

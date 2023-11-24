@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Portfolio.Crosscutting.DI;
 using Portfolio.Crosscutting.Mapping;
+using Portfolio.Infrastructure.Extensions;
 using Portfolio.Infrastructure.Filters;
 using Portfolio.Infrastructure.Helpers;
 using Portfolio.Infrastructure.Security;
@@ -34,13 +35,14 @@ namespace Portfolio.Api
             services.AddDependencyInjection();
             services.AddAutoMapper();
             services.AddMvcCore(options => { options.Filters.Add(typeof(CodigoUsuarioActionFilter)); }).AddApiExplorer();
+            services.AddSwagger("Portfolio", "v1");
             services.AddIdentityServer()
                     .AddConfigurationStore(options =>
                     {
                         options.ConfigureDbContext = b =>
-                            b.UseSqlServer(Configuration.GetConnectionString("connectionString")); //todo: set connectionString
+                            b.UseSqlServer(Configuration.GetConnectionString("Portfolio")); //todo: set connectionString
                     });
-            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore );
+            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
             var key = Encoding.ASCII.GetBytes(appSettings.SecretToken);
             services.AddAuthentication(x =>
@@ -83,6 +85,11 @@ namespace Portfolio.Api
                     });
             });
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Portfolio V1");
+            });
             app.UseMiddleware<TokenManagerMiddleware>();
 
             app.UseCors(options => options.WithOrigins(Configuration["AppSettings:WebUrl"]).AllowAnyMethod().AllowAnyHeader());

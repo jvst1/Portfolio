@@ -6,9 +6,8 @@ using Portfolio.Domain.Messaging.Cad;
 using Portfolio.Infrastructure.Enums;
 using Portfolio.Infrastructure.Helpers;
 
-namespace Safe.Api.Controllers.Cad
+namespace Portfolio.Api.Controllers.Cad
 {
-    [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
     public class UsuarioController : PortfolioControllerBase
     {
         private readonly UsuarioApplicationService _usuarioApplicationService;
@@ -18,6 +17,7 @@ namespace Safe.Api.Controllers.Cad
             _usuarioApplicationService = service;
         }
 
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
         [HttpGet("GetToSelect")]
         public ActionResult GetToSelect()
         {
@@ -25,28 +25,42 @@ namespace Safe.Api.Controllers.Cad
             return Ok(response);
         }
 
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
         [HttpGet]
         public ActionResult<List<UsuarioResponse>> Get(Request request)
         {
             return _usuarioApplicationService.GetAll(request);
         }
 
+        [Authorize()]
         [HttpGet("{id}")]
         public ActionResult<UsuarioResponse> Get(Guid id)
         {
             return _usuarioApplicationService.GetById(id);
         }
 
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, UsuarioRequest sender)
-        {                                   
-            if (id != sender.Codigo) 
+         {
+            if (id != sender.Codigo)
                 return BadRequest();
 
             _usuarioApplicationService.Put(id, sender);
             return Ok();
         }
 
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
+        [HttpPut("{id}/Comerciante")]
+        public IActionResult PutComerciante(Guid id, UsuarioComercianteRequest sender)
+        {
+            if (id != sender.Codigo)
+                return BadRequest();
+
+            _usuarioApplicationService.PutComerciante(id, sender);
+            return Ok();
+        }
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
         [HttpPost]
         public ActionResult<UsuarioResponse> Post(UsuarioRequest request)
         {
@@ -54,6 +68,7 @@ namespace Safe.Api.Controllers.Cad
             return CreatedAtAction("Get", new { id = sender.Codigo }, sender);
         }
 
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
         [HttpDelete("{id}")]
         public ActionResult Delete(Guid id)
         {

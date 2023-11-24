@@ -4,7 +4,7 @@ using Portfolio.Domain.Base;
 using Portfolio.Domain.Entities.Cad;
 using Portfolio.Domain.RawQueryResponse;
 using Portfolio.Domain.Repositories.Cad;
-using Portfolio.Domain.Services.Email;
+using Portfolio.Domain.Services.Core;
 using Portfolio.Infrastructure.Enums;
 using Portfolio.Infrastructure.Exceptions;
 using Portfolio.Infrastructure.Helpers;
@@ -21,14 +21,14 @@ namespace Portfolio.Domain.Services.Cad
         private ILogger<UsuarioDomainService> _logger;
         private readonly JwtHandler _jwtHandler;
         private readonly CodigoUsuarioHelper _codigoUsuarioHelper;
-        private readonly EmailDomainService _emailService;
+        private readonly EnvioEmailDomainService _emailService;
 
         public UsuarioDomainService(IOptions<AppSettings> appSettings,
                                     ILogger<UsuarioDomainService> logger,
                                     IUsuarioRepository crudRepository,
                                     JwtHandler jwtHandler,
                                     CodigoUsuarioHelper codigoUsuarioHelper,
-                                    EmailDomainService emailService) : base(crudRepository)
+                                    EnvioEmailDomainService emailService) : base(crudRepository)
         {
             _appSettings = appSettings.Value;
             _logger = logger;
@@ -99,7 +99,7 @@ namespace Portfolio.Domain.Services.Cad
 
             CrudRepository.Update(usuario);
 
-            //_emailService.RegistraEmailResetSenha(usuario, token);
+            _emailService.RegistrarEmailResetSenha(usuario, token);
         }
 
         public void RecuperarSenha(string requestToken, Guid requestCodigoUsuario, string requestLogin, string requestNovaSenha)

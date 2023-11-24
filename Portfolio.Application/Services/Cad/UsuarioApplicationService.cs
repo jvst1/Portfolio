@@ -47,6 +47,11 @@ namespace Portfolio.Application.Services.Cad
             _usuarioService.Update(id, entity);
         }
 
+        public void PutComerciante(Guid id, UsuarioComercianteRequest request)
+        {
+            var entity = _mapper.ConvertToDomain(request);
+            _usuarioService.Update(id, entity);
+        }
         public Usuario Post(UsuarioRequest request)
         {
             var sender = _mapper.ConvertToDomain(request);
