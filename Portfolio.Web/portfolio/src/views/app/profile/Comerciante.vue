@@ -18,16 +18,16 @@
 </template>
   
 <script>
-import ContaComerciante from './profile/ContaComerciante.vue';
-import CardapioComerciante from './profile/CardapioComerciante.vue';
+import ComercianteConta from './ComercianteConta.vue';
+import ComercianteCardapio from './ComercianteCardapio.vue';
 
 export default {
     data() {
         return {
             activeTab: 0,
             tabs: [
-                { name: 'conta', title: 'Minha Conta', component: ContaComerciante },
-                { name: 'cardapio', title: 'Meu Cardápio', component: CardapioComerciante },
+                { name: 'conta', title: 'Minha Conta', component: ComercianteConta },
+                { name: 'cardapio', title: 'Meu Cardápio', component: ComercianteCardapio },
             ],
         };
     },

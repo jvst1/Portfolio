@@ -18,6 +18,11 @@ namespace Portfolio.Data.Repositories.Cad
             return Context.RawQuery(new UsuarioQueries.GetAll(search, situacao)).ToList();
         }
 
+        public List<Usuario> GetAllComerciantes()
+        {
+            return Context.RawQuery(new UsuarioQueries.GetAllComerciantes()).ToList();
+        }
+
         public List<GuidStringRawQueryResponse> GetToSelect()
         {
             return Context.RawQuery(new UsuarioQueries.GetToSelect()).ToList();

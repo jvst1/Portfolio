@@ -33,6 +33,13 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [Authorize()]
+        [HttpGet("Comerciantes")]
+        public ActionResult<List<UsuarioResponse>> GetAllComerciantes()
+        {
+            return _usuarioApplicationService.GetAllComerciantes();
+        }
+
+        [Authorize()]
         [HttpGet("{id}")]
         public ActionResult<UsuarioResponse> Get(Guid id)
         {

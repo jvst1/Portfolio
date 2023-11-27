@@ -30,8 +30,16 @@ namespace Portfolio.Application.Services.Cad
         {
             var search = request["search"]?.ToUpper();
             var situacao = request["situacao", true];
+            var tipoPerfil = request["tipoPerfil", true];
 
             var usuarioes = _usuarioService.GetAll(search, situacao);
+
+            return _mapper.ConvertFromDomain<UsuarioResponse>(usuarioes);
+        }
+
+        public List<UsuarioResponse> GetAllComerciantes()
+        {
+            var usuarioes = _usuarioService.GetAllComerciantes();
 
             return _mapper.ConvertFromDomain<UsuarioResponse>(usuarioes);
         }

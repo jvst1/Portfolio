@@ -22,10 +22,29 @@ namespace Portfolio.Data.Queries.Cad
                 var sql = @"SELECT * FROM cad.Usuario (NOLOCK)";
 
                 if (Situacao != null && Situacao.Any())
-                    AddCondition("Situacao IN (" + string.Join(", ", Situacao) + " )");
+                    AddCondition("Situacao IN (" + string.Join(", ", Situacao) + ")");
 
                 if (!string.IsNullOrEmpty(Search))
                     AddCondition(GetSearch(Search, "Email", "Identificador", "TelefoneCelular"));
+
+                return sql + GetWhere();
+            }
+        }
+
+        public class GetAllComerciantes : QueryBase<Usuario>
+        {
+            public int TipoPerfil { get; }
+            
+            public GetAllComerciantes()
+            {
+                TipoPerfil = (int)TipoPerfilUsuario.Comerciante;
+            }
+
+            public override string GetSql()
+            {
+                var sql = @"SELECT * FROM cad.Usuario (NOLOCK)";
+
+                AddCondition($"TipoPerfil = @{nameof(TipoPerfil)}");
 
                 return sql + GetWhere();
             }

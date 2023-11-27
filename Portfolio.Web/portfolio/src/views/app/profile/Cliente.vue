@@ -18,16 +18,16 @@
 </template>
   
 <script>
-import ContaCliente from './profile/ContaCliente.vue';
-import EnderecoCliente from './profile/EnderecoCliente.vue';
+import ClienteConta from './ClienteConta.vue';
+import ClienteEndereco from './ClienteEndereco.vue';
 
 export default {
     data() {
         return {
             activeTab: 0,
             tabs: [
-                { name: 'conta', title: 'Minha Conta', component: ContaCliente },
-                { name: 'endereco', title: 'Meus Endereços', component: EnderecoCliente },
+                { name: 'conta', title: 'Minha Conta', component: ClienteConta },
+                { name: 'endereco', title: 'Meus Endereços', component: ClienteEndereco },
             ],
         };
     },
