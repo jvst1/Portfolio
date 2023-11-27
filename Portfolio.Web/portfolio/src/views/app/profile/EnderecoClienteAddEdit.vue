@@ -11,22 +11,22 @@
               :model-names="cepModelNames" :model-endereco="endereco" required />
           </v-col>
           <v-col class="py-0" cols="6">
-            <input-text v-model="endereco.logradouro" v-uppercase label="Logradouro" max-length="100" required />
+            <input-text v-model="endereco.logradouro" v-uppercase label="Logradouro" max-length="100" :disabled="true" required />
           </v-col>
           <v-col class="py-0" cols="3">
             <input-text v-model="endereco.nroLogradouro" label="Número" max-length="15" required />
           </v-col>
           <v-col class="py-0" cols="6">
-            <input-text v-model="endereco.bairro" v-uppercase label="Bairro" max-length="50" required />
+            <input-text v-model="endereco.bairro" v-uppercase label="Bairro" max-length="50" :disabled="true" required />
           </v-col>
           <v-col class="py-0" cols="6">
             <input-text v-model="endereco.complemento" v-uppercase label="Complemento" max-length="50" />
           </v-col>
           <v-col class="py-0" cols="5">
-            <input-text v-model="endereco.cidade" v-uppercase label="Cidade" max-length="40" required />
+            <input-text v-model="endereco.cidade" v-uppercase label="Cidade" max-length="40" :disabled="true" required />
           </v-col>
           <v-col class="py-0" cols="3">
-            <input-select v-model="endereco.uf" label="Estado" :options="estados" required />
+            <input-select v-model="endereco.uf" label="Estado" :options="estados" :disabled="true" required />
           </v-col>
           <v-col class="py-0" cols="4">
             <input-date v-model="endereco.enderecoDesde" label="Endereço desde?" required />
