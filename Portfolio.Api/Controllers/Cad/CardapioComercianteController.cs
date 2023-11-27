@@ -24,14 +24,14 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Cliente) + "," + nameof(TipoPerfilUsuario.Comerciante))]
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Comerciante))]
         public ActionResult<CardapioComercianteResponse> Get(Guid id)
         {
             return _cardapioComercianteApplicationService.GetById(id);
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Comerciante))]
         public IActionResult Put(Guid id, CardapioComerciantePutRequest sender)
         {
             if (id != sender.Codigo)
@@ -42,7 +42,7 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [HttpPost]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Comerciante))]
         public ActionResult<UsuarioResponse> Post(CardapioComerciantePostRequest request)
         {
             var sender = _cardapioComercianteApplicationService.Post(request);
@@ -50,7 +50,7 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Comerciante))]
         public ActionResult Delete(Guid id)
         {
             _cardapioComercianteApplicationService.Delete(id);

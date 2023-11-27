@@ -21,7 +21,7 @@
                 <input-text label="Valor minimo do pedido" placeholder="Informe um valor mínimo para o pedido"
                     v-model="formData.valorMinimoPedido" :maxlength="100" required />
 
-                <v-combobox label="Tags" placeholder="Adicione até 3 tags!" chips multiple @input="onInput"
+                <v-combobox label="Tags" placeholder="Adicione até 3 tags!" chips multiple @input="onInput" clearable
                     v-model="formData.tags" required />
             </v-card-text>
             <v-btn text color="primary" @click="save">Salvar alterações</v-btn>
@@ -57,7 +57,7 @@ export default {
         initPage() {
             this.$api.Usuario.Get(this.$store.getters.user.codigoUsuario).then((response) => {
                 this.formData = { ...response };
-                console.log(this.formData)
+                this.formData.tags = JSON.parse(response.tags)
             });
         },
         save() {

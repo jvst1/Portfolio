@@ -50,7 +50,7 @@ namespace Portfolio.Api.Controllers.Cad
             return Ok();
         }
 
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
+        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Comerciante))]
         [HttpPut("{id}/Comerciante")]
         public IActionResult PutComerciante(Guid id, UsuarioComercianteRequest sender)
         {

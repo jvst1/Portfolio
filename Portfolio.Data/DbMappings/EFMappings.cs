@@ -12,6 +12,8 @@ namespace Portfolio.Data.DbMappings
     {
     }
 
+    #region Schema Cad
+
     public class UsuarioMapping : DbMappingBase<Usuario>, IEfDbMapping<Usuario>
     {
         public override string DbService => Identificadores.Portfolio;
@@ -32,6 +34,32 @@ namespace Portfolio.Data.DbMappings
             DefaultMappings.Ambos<UsuarioEndereco, long>(Schema)(builder);
         }
     }
+
+    public class CategoriaMapping : DbMappingBase<Categoria>, IEfDbMapping<Categoria>
+    {
+        public override string DbService => Identificadores.Portfolio;
+        public override string Schema => "cad";
+
+        public void Configure(EntityTypeBuilder<Categoria> builder)
+        {
+            DefaultMappings.Ambos<Categoria, long>(Schema)(builder);
+        }
+    }
+
+    public class CardapioComercianteMapping : DbMappingBase<CardapioComerciante>, IEfDbMapping<CardapioComerciante>
+    {
+        public override string DbService => Identificadores.Portfolio;
+        public override string Schema => "cad";
+
+        public void Configure(EntityTypeBuilder<CardapioComerciante> builder)
+        {
+            DefaultMappings.Ambos<CardapioComerciante, long>(Schema)(builder);
+        }
+    }
+
+    #endregion
+
+    #region Schema core
 
     public class EnvioEmailMapping : DbMappingBase<EnvioEmail>, IEfDbMapping<EnvioEmail>
     {
@@ -55,14 +83,5 @@ namespace Portfolio.Data.DbMappings
         }
     }
 
-    public class CategoriaMapping : DbMappingBase<Categoria>, IEfDbMapping<Categoria>
-    {
-        public override string DbService => Identificadores.Portfolio;
-        public override string Schema => "cad";
-
-        public void Configure(EntityTypeBuilder<Categoria> builder)
-        {
-            DefaultMappings.Ambos<Categoria, long>(Schema)(builder);
-        }
-    }
+    #endregion
 }

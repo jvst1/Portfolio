@@ -21,7 +21,6 @@ import VueLodash from "vue-lodash";
 import lodash from "lodash";
 import Notifications from "vue-notification";
 import VueFileAgent from "vue-file-agent";
-import VueFileAgentStyles from "vue-file-agent/dist/vue-file-agent.css";
 import BlockUI from "vue-blockui";
 
 Vue.use(VueTheMask);
@@ -62,7 +61,6 @@ if (themeString && themeString !== "undefined" && themeString !== "") {
 Vue.use(VueLodash, { lodash: lodash });
 Vue.use(Notifications);
 Vue.use(VueFileAgent);
-Vue.use(VueFileAgentStyles);
 Vue.use(BlockUI);
 
 Vue.mixin({

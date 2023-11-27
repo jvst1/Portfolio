@@ -26,6 +26,10 @@ namespace Portfolio.Crosscutting.Mapping
                 cfg.CreateMap<Categoria, CategoriaPostRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Categoria, CategoriaPutRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Categoria, CategoriaResponse>(MemberList.None).ReverseMap();
+
+                cfg.CreateMap<CardapioComerciante, CardapioComerciantePostRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<CardapioComerciante, CardapioComerciantePutRequest>(MemberList.None).ReverseMap();
+                cfg.CreateMap<CardapioComerciante, CardapioComercianteResponse>(MemberList.None).ReverseMap();
                 #endregion
 
                 #region Identity

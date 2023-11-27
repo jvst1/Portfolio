@@ -20,8 +20,7 @@ export default {
                 { value: 'vendaAtiva', text: 'DisponÍvel para venda?', format: 'boolean' },
                 { value: 'aplicarDesconto', text: 'Aplicar Desconto?', format: 'boolean' },
                 { value: 'valorDescontoFixo', text: 'Preço com desconto', format: 'currency' },
-                { value: 'valorDescontoPercentual', text: 'Porcentagem de desconto', format: 'currency' },
-                { value: 'valorMinimoPedido', text: 'Valor minimo pedido', format: 'currency' },
+                { value: 'valorDescontoPercentual', text: 'Porcentagem de desconto', template: p => p.valorDescontoPercentual  + '%' },
             ]
         }
     },
