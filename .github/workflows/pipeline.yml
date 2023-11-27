@@ -50,8 +50,9 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           DOCKERFILE_PATH: Portfolio.Api/Dockerfile
         run: |
-          ls -l    # List the contents of the working directory
-          ls -l $DOCKERFILE_PATH    # List the contents of the specified Dockerfile path
+          ls -l
+          cd $DOCKERFILE_PATH
+          ls -l
           # Build a docker container and
           # push it to ECR so that it can
           # be deployed to ECS.
