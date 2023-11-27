@@ -8,12 +8,12 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Portfolio.Api/Portfolio.Api.csproj", "Portfolio.Api/"]
-COPY ["Portfolio.Crosscutting/Portfolio.Crosscutting.csproj", "Portfolio.Crosscutting/"]
-COPY ["Portfolio.Infrastructure/Portfolio.Infrastructure.csproj", "Portfolio.Infrastructure/"]
-COPY ["Portfolio.Application/Portfolio.Application.csproj", "Portfolio.Application/"]
-COPY ["Portfolio.Domain/Portfolio.Domain.csproj", "Portfolio.Domain/"]
-COPY ["Portfolio.Data/Portfolio.Data.csproj", "Portfolio.Data/"]
+COPY ["Portfolio.Api.csproj", "Portfolio.Api/"]
+COPY ["../Portfolio.Crosscutting/Portfolio.Crosscutting.csproj", "Portfolio.Crosscutting/"]
+COPY ["../Portfolio.Infrastructure/Portfolio.Infrastructure.csproj", "Portfolio.Infrastructure/"]
+COPY ["../Portfolio.Application/Portfolio.Application.csproj", "Portfolio.Application/"]
+COPY ["../Portfolio.Domain/Portfolio.Domain.csproj", "Portfolio.Domain/"]
+COPY ["../Portfolio.Data/Portfolio.Data.csproj", "Portfolio.Data/"]
 RUN dotnet restore "Portfolio.Api/Portfolio.Api.csproj"
 COPY . .
 WORKDIR "/src/Portfolio.Api"
