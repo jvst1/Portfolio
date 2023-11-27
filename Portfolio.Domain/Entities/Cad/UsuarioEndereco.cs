@@ -42,6 +42,32 @@ namespace Portfolio.Domain.Entities.Cad
             if (CodigoUsuario.Equals(Guid.Empty))
                 AddBrokenRule(new BusinessRule("O campo CodigoUsuario não pode ser nulo.", nameof(CodigoUsuario)));
 
+            if (string.IsNullOrWhiteSpace(CEP))
+                AddBrokenRule(new BusinessRule("CEP não pode ser nulo ou vazio.", nameof(CEP)));
+
+            CEP = Util.DeixaNumeros(CEP);
+
+            if (!string.IsNullOrWhiteSpace(CEP) && CEP.Length > 8)
+                AddBrokenRule(new BusinessRule("O CEP fornecido é inválido. Confira os dados fornecidos. Tenha certeza que o CEP não ultrapasse 8 caracteres.", nameof(CEP)));
+
+            if (!string.IsNullOrWhiteSpace(Logradouro) && Logradouro.Length > 100)
+                AddBrokenRule(new BusinessRule("O Logradouro não pode ultrapassar 100 caracteres.", nameof(Logradouro)));
+
+            if (!string.IsNullOrWhiteSpace(NroLogradouro) && NroLogradouro.Length > 15)
+                AddBrokenRule(new BusinessRule("O Número do Logradouro não pode ultrapassar 15 caracteres.", nameof(NroLogradouro)));
+
+            if (!string.IsNullOrWhiteSpace(Bairro) && Bairro.Length > 50)
+                AddBrokenRule(new BusinessRule("O Bairro não pode ultrapassar 50 caracteres.", nameof(Bairro)));
+
+            if (!string.IsNullOrWhiteSpace(Complemento) && Complemento.Length > 50)
+                AddBrokenRule(new BusinessRule("O Complemento não pode ultrapassar 50 caracteres.", nameof(Complemento)));
+
+            if (!string.IsNullOrWhiteSpace(Cidade) && Cidade.Length > 40)
+                AddBrokenRule(new BusinessRule("A Cidade não pode ultrapassar 40 caracteres.", nameof(Cidade)));
+
+            if (!string.IsNullOrWhiteSpace(UF) && UF.Length != 2)
+                AddBrokenRule(new BusinessRule("UF deve ser preenchido com dois caracteres.", nameof(UF)));
+
             if (!EnderecoPrincipal.HasValue)
                 EnderecoPrincipal = false;
 
@@ -49,9 +75,41 @@ namespace Portfolio.Domain.Entities.Cad
             DtInclusao = DateTime.Now;
         }
 
+
         protected override void UpdateValidate()
         {
+            if (CodigoUsuario.Equals(Guid.Empty))
+                AddBrokenRule(new BusinessRule("O campo CodigoUsuario não pode ser nulo.", nameof(CodigoUsuario)));
+
+            if (string.IsNullOrWhiteSpace(CEP))
+                AddBrokenRule(new BusinessRule("CEP não pode ser nulo ou vazio.", nameof(CEP)));
+
             CEP = Util.DeixaNumeros(CEP);
+
+            if (!string.IsNullOrWhiteSpace(CEP) && CEP.Length > 8)
+                AddBrokenRule(new BusinessRule("O CEP fornecido é inválido. Confira os dados fornecidos. Tenha certeza que o CEP não ultrapasse 8 caracteres.", nameof(CEP)));
+
+            if (!string.IsNullOrWhiteSpace(Logradouro) && Logradouro.Length > 100)
+                AddBrokenRule(new BusinessRule("O Logradouro não pode ultrapassar 100 caracteres.", nameof(Logradouro)));
+
+            if (!string.IsNullOrWhiteSpace(NroLogradouro) && NroLogradouro.Length > 15)
+                AddBrokenRule(new BusinessRule("O Número do Logradouro não pode ultrapassar 15 caracteres.", nameof(NroLogradouro)));
+
+            if (!string.IsNullOrWhiteSpace(Bairro) && Bairro.Length > 50)
+                AddBrokenRule(new BusinessRule("O Bairro não pode ultrapassar 50 caracteres.", nameof(Bairro)));
+
+            if (!string.IsNullOrWhiteSpace(Complemento) && Complemento.Length > 50)
+                AddBrokenRule(new BusinessRule("O Complemento não pode ultrapassar 50 caracteres.", nameof(Complemento)));
+
+            if (!string.IsNullOrWhiteSpace(Cidade) && Cidade.Length > 40)
+                AddBrokenRule(new BusinessRule("A Cidade não pode ultrapassar 40 caracteres.", nameof(Cidade)));
+
+            if (!string.IsNullOrWhiteSpace(UF) && UF.Length != 2)
+                AddBrokenRule(new BusinessRule("UF deve ser preenchido com dois caracteres.", nameof(UF)));
+
+            if (!EnderecoPrincipal.HasValue)
+                EnderecoPrincipal = false;
+
             DtAlteracao = DateTime.Now;
         }
     }

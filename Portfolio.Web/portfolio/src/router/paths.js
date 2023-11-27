@@ -10,7 +10,7 @@ export default [
     dir: "views/app/",
     menu: true,
     meta: {
-      roles: [TipoPerfilUsuario.Cliente],
+      roles: [TipoPerfilUsuario.Nenhum],
       allRolesRequired: false,
     },
   },
