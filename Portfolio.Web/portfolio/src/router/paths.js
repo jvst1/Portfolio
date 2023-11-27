@@ -10,7 +10,7 @@ export default [
     dir: "views/app/",
     menu: true,
     meta: {
-      roles: [TipoPerfilUsuario.Nenhum, TipoPerfilUsuario.Cliente],
+      roles: [TipoPerfilUsuario.Cliente],
       allRolesRequired: false,
     },
   },
@@ -22,7 +22,7 @@ export default [
     dir: "views/app/",
     menu: true,
     meta: {
-      roles: [TipoPerfilUsuario.Nenhum, TipoPerfilUsuario.Cliente],
+      roles: [TipoPerfilUsuario.Cliente],
       allRolesRequired: false,
     },
   },
@@ -34,7 +34,7 @@ export default [
     dir: "views/app/",
     menu: true,
     meta: {
-      roles: [TipoPerfilUsuario.Nenhum, TipoPerfilUsuario.Comerciante],
+      roles: [TipoPerfilUsuario.Comerciante],
       allRolesRequired: false,
     },
   },
