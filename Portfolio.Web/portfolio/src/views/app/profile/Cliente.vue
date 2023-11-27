@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col cols="12" md="4" lg="3">
-                <v-tabs vertical v-model="activeTab" @change="handleTabChange">
+                <v-tabs vertical v-model="activeTab">
                     <v-tab v-for="tab in tabs" :key="tab.name">{{ tab.title }}</v-tab>
                 </v-tabs>
             </v-col>

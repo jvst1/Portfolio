@@ -6,8 +6,7 @@
                     <span v-if="offer" class="card__featured">{{ discountPercentage }}% OFF</span>
                     <v-row>
                         <v-col cols="6" class="d-flex">
-                            <v-img class="align-items:center; justify-content: center; vertical-align: center;" :src="image"
-                                height="auto" width="auto"></v-img>
+                            <v-img :src="image" height="auto" width="auto"></v-img>
                         </v-col>
                         <v-col cols="6">
                             <v-card-title>{{ name }}</v-card-title>
@@ -29,6 +28,7 @@
                 </v-card>
             </v-col>
         </v-row>
+        <br />
     </v-container>
 </template>
     
@@ -42,7 +42,6 @@ export default {
         },
         codigoComerciante: {
             type: String,
-            default: ""
         },
         image: {
             type: String,
@@ -70,7 +69,7 @@ export default {
     data() {
         return {
             comment: '',
-            quantity: 1,
+            quantity: 0,
         };
     },
     computed: {
@@ -81,7 +80,7 @@ export default {
                 return this.basePrice * this.quantity;
         },
         discountPercentage() {
-            return ((this.basePrice - this.offerPrice) / this.basePrice) * 100;
+            return (Math.round(((this.basePrice - this.offerPrice) / this.basePrice) * 100));
         },
     },
     methods: {
@@ -89,12 +88,27 @@ export default {
             this.quantity++;
         },
         decreaseQuantity() {
-            if (this.quantity > 1) {
+            if (this.quantity > 0) {
                 this.quantity--;
             }
         },
         addToCart() {
-            console.log("Adicionado ao carrinho:", this.codigoComerciante, this.codigo, this.quantity, this.comment);
+            if (this.quantity == 0) {
+                this.$api.UI.ShowError("ERRO!", "Houve uma tentativa de adicionar zero itens ao carrinho, por favor selecione pelo menos um item e tente novamente")
+                return;
+            }
+            else {
+                const dto = {
+                    codigoComerciante: this.codigoComerciante,
+                    added: {
+                        codigo: this.codigo,
+                        quantidade: this.quantity,
+                        comentario: this.comment
+                    }
+                };
+
+                this.$store.dispatch('addToCart', { dto })
+            }
         },
     },
 };
