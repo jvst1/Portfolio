@@ -15,6 +15,9 @@ export default Object.assign({}, util.GetCrud(controller, ['get', 'getall', 'put
   Combo: function () {
     return util.Axios.Get(controller + "/GetToSelect");
   },
+  GetAllComerciantes: function () {
+    return util.Axios.Get(controller, "Comerciantes");
+  },
   PutComerciante: function (codigoUsuario, dto) {
     return util.Axios.Put(controller, `${codigoUsuario}/Comerciante`, dto);
   },

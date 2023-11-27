@@ -7,6 +7,7 @@ namespace Portfolio.Domain.Repositories.Cad
     public interface IUsuarioRepository : ICrudRepository<Usuario>
     {
         List<Usuario> GetAll(string search, string[] situacao);
+        List<Usuario> GetAllComerciantes();
         List<GuidStringRawQueryResponse> GetToSelect();
         bool IsClientIdCadastrado(Guid codigoUsuario, string clientIdIdentityServer);
         Usuario GetFirstByClientId(string clientIdIdentityServer);

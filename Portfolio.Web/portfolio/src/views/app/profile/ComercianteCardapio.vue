@@ -1,18 +1,19 @@
 <template>
     <v-container fluid>
         <core-grid ref="grid" :onRead="onRead" :schema="schema"></core-grid>
-        <CardapioComercianteAddEdit ref="editar" @close="response"></CardapioComercianteAddEdit>
+        <ComercianteCardapioAddEdit ref="editar" @close="response"></ComercianteCardapioAddEdit>
     </v-container>
 </template>
   
 <script>
 export default {
-    name: "AddressPage",
+    name: "ComercianteCardapioPage",
     components: {
-        CardapioComercianteAddEdit: () => import('./CardapioComercianteAddEdit')
+        ComercianteCardapioAddEdit: () => import('./ComercianteCardapioAddEdit')
     },
     data() {
         return {
+            codigoComerciante: this.$store.getters.user.codigoUsuario,
             schema: [
                 { value: 'nome', text: 'Nome do Produto' },
                 { value: 'descricao', text: 'Descrição' },
@@ -20,15 +21,15 @@ export default {
                 { value: 'vendaAtiva', text: 'DisponÍvel para venda?', format: 'boolean' },
                 { value: 'aplicarDesconto', text: 'Aplicar Desconto?', format: 'boolean' },
                 { value: 'valorDescontoFixo', text: 'Preço com desconto', format: 'currency' },
-                { value: 'valorDescontoPercentual', text: 'Porcentagem de desconto', template: p => p.valorDescontoPercentual  + '%' },
+                { value: 'valorDescontoPercentual', text: '% de desconto', template: p => p.valorDescontoPercentual + '%' },
             ]
         }
     },
     methods: {
         onRead: function (options, search) {
-            const dto = { parameters: [{ name: 'CodigoUsuario', value: this.$store.getters.user.codigoUsuario }, { name: 'search', value: search }] }
+            const dto = { parameters: [{ name: 'CodigoUsuario', value: this.codigoComerciante }, { name: 'search', value: search }] }
 
-            this.$api.CardapioComerciante.GetAll(dto).then((response) => {
+            this.$api.Cardapio.GetAll(this.codigoComerciante, dto).then((response) => {
                 if (response.error) {
                     this.$api.UI.ShowError("Erro", response.error);
                 } else {
@@ -44,7 +45,7 @@ export default {
         },
         excluir(current) {
             if (current) {
-                this.$api.CardapioComerciante.Delete(current.codigo).then((data) => {
+                this.$api.Cardapio.Delete(this.codigoComerciante, current.codigo).then((data) => {
                     if (this.$api.UI.PostAction(data, `Item do cardápio "${current.nome}" removido com sucesso.`)) {
                         this.refresh()
                     }

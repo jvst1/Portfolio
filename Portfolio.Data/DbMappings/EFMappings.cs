@@ -46,14 +46,14 @@ namespace Portfolio.Data.DbMappings
         }
     }
 
-    public class CardapioComercianteMapping : DbMappingBase<CardapioComerciante>, IEfDbMapping<CardapioComerciante>
+    public class CardapioMapping : DbMappingBase<Cardapio>, IEfDbMapping<Cardapio>
     {
         public override string DbService => Identificadores.Portfolio;
         public override string Schema => "cad";
 
-        public void Configure(EntityTypeBuilder<CardapioComerciante> builder)
+        public void Configure(EntityTypeBuilder<Cardapio> builder)
         {
-            DefaultMappings.Ambos<CardapioComerciante, long>(Schema)(builder);
+            DefaultMappings.Ambos<Cardapio, long>(Schema)(builder);
         }
     }
 

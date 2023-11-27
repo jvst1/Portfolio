@@ -18,8 +18,8 @@ export default [
     title: "Configurações",
     icon: "fas fa-cog",
     path: "/cliente/settings",
-    view: "ConfiguracoesCliente",
-    dir: "views/app/",
+    view: "Cliente",
+    dir: "views/app/profile/",
     menu: true,
     meta: {
       roles: [TipoPerfilUsuario.Cliente],
@@ -30,8 +30,8 @@ export default [
     title: "Configurações",
     icon: "fas fa-cog",
     path: "/comerciante/settings",
-    view: "ConfiguracoesComerciante",
-    dir: "views/app/",
+    view: "Comerciante",
+    dir: "views/app/profile/",
     menu: true,
     meta: {
       roles: [TipoPerfilUsuario.Comerciante],

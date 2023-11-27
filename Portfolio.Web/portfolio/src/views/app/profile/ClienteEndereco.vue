@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <core-grid ref="grid" :onRead="onRead" :schema="schema"></core-grid>
-        <EnderecoClienteAddEdit ref="editar" @close="response"></EnderecoClienteAddEdit>
+        <ClienteEnderecoAddEdit ref="editar" @close="response"></ClienteEnderecoAddEdit>
     </v-container>
 </template>
   
@@ -9,7 +9,7 @@
 export default {
     name: "AddressPage",
     components: {
-        EnderecoClienteAddEdit: () => import('./EnderecoClienteAddEdit')
+        ClienteEnderecoAddEdit: () => import('./ClienteEnderecoAddEdit')
     },
     data() {
         return {

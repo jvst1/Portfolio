@@ -45,7 +45,7 @@
   
 <script>
 export default {
-  name: 'AddressAddEdit',
+  name: 'ClienteEnderecoAddEdit',
   data() {
     return {
       show: false,

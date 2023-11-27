@@ -1,67 +1,87 @@
 <template>
-    <div class="card">
-        <div class="card__image" :style="{ 'background-image': 'url(' + image + ')' }">
-            <span v-if="featured" class="card__featured">{{ featured }}</span>
+  <div class="card">
+    <a @click="openCardapio">
+      <div class="card__image" :style="{ 'background-image': 'url(' + image + ')' }">
+        <span v-if="featured" class="card__featured">{{ featured }}</span>
+      </div>
+      <div class="card__body">
+        <div class="card__top-section">
+          <div class="card__title">{{ title }}</div>
+          <div class="card__count">
+            <v-icon small>fas fa-shopping-cart</v-icon>
+            <span v-if="counter" class="card__count-counter">{{ counter }}</span>
+          </div>
         </div>
-        <div class="card__body">
-            <div class="card__top-section">
-                <div class="card__title">{{ title }}</div>
-                <div class="card__count">
-                    <v-icon small>fas fa-shopping-cart</v-icon>
-                    <span v-if="counter" class="card__count-counter">{{ counter }}</span>
-                </div>
-            </div>
-            <div class="card__text">
-                <v-icon small>fas fa-clock</v-icon>
-                <div class="card__text__detail">&nbsp;{{ minTime }}</div>
-                <span class="card__tag-dot"></span>
-                <div class="card__text__detail">&nbsp;{{ minSum }}</div>
-            </div>
-            <div class="card__tags">
-                <v-chip v-for="tag in tags" :key="`productTag__${tag}`">{{ tag }}</v-chip>
-            </div>
+        <div class="card__text">
+          <v-icon small>fas fa-clock</v-icon>
+          <div class="card__text__detail">&nbsp;{{ minTime }}</div>
+          <span class="card__tag-dot"></span>
+          <div class="card__text__detail">&nbsp;{{ this.$api.UI.Format.Currency(minSum) }}</div>
         </div>
-    </div>
+        <div class="card__tags">
+          <v-chip v-for="tag in tags" :key="`productTag__${tag}`">{{ tag }}</v-chip>
+        </div>
+      </div>
+      <modal-order ref="order" :items="produtos" :codigoComerciante="codigo"></modal-order>
+    </a>
+  </div>
 </template>
 
   
 <script>
 export default {
-    name: "ProductCard",
-    props: {
-        image: {
-            type: String,
-            default: 'https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png'
-        },
-        featured: {
-            type: String,
-            default: "",
-        },
-        title: {
-            type: String,
-            default: "",
-        },
-        counter: {
-            type: Number,
-            default: 0,
-        },
-        minTime: {
-            type: String,
-            default: "",
-        },
-        minSum: {
-            type: String,
-            default: "",
-        },
-        cardTextDot: {
-            type: String,
-            default: "",
-        },
-        tags: {
-            type: Array,
-            default: () => [],
-        },
+  name: "EstabelecimentoComercialCard",
+  props: {
+    codigo: {
+      type: String,
+      default: ""
     },
+    image: {
+      type: String,
+      default: 'https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png'
+    },
+    featured: {
+      type: String,
+      default: "",
+    },
+    title: {
+      type: String,
+      default: "",
+    },
+    counter: {
+      type: Number,
+      default: 0,
+    },
+    minTime: {
+      type: String,
+      default: "",
+    },
+    minSum: {
+      type: Number,
+    },
+    cardTextDot: {
+      type: String,
+      default: "",
+    },
+    tags: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      produtos: [],
+    };
+  },
+  methods: {
+    openCardapio() {
+      const dto = {};
+      this.$api.Cardapio.GetAll(this.codigo, dto).then((response) => {
+        this.produtos = [...response];
+      });
+      this.$refs.order.openModal();
+    },
+  }
 };
 </script>
   
@@ -115,6 +135,7 @@ export default {
   &__count {
     position: relative;
     cursor: pointer;
+
     &-counter {
       color: var(--white);
       position: absolute;
@@ -158,7 +179,7 @@ export default {
     grid-template-columns: auto;
     gap: 6px;
   }
- 
+
   &__tag {
     color: var(--grey-dark);
     cursor: pointer;

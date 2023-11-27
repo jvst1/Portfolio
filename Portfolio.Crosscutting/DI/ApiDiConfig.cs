@@ -56,7 +56,7 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<IEnvioEmailRepository, EnvioEmailRepository>();
             services.AddTransient<IEmailAnexoRepository, EmailAnexoRepository>();
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
-            services.AddTransient<ICardapioComercianteRepository, CardapioComercianteRepository>();
+            services.AddTransient<ICardapioRepository, CardapioRepository>();
         }
 
         private static void ConfigureServices(IServiceCollection services)
@@ -72,7 +72,7 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<UsuarioEnderecoDomainService>();
             services.AddTransient<EnvioEmailDomainService>();
             services.AddTransient<CategoriaDomainService>();
-            services.AddTransient<CardapioComercianteDomainService>();
+            services.AddTransient<CardapioDomainService>();
         }
 
         private static void ConfigureApplicationServices(IServiceCollection services)
@@ -87,7 +87,7 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<ClientScopesApplicationService>();
             services.AddTransient<ClientSecretsApplicationService>();
             services.AddTransient<CategoriaApplicationService>();
-            services.AddTransient<CardapioComercianteApplicationService>();
+            services.AddTransient<CardapioApplicationService>();
         }
 
         private static void ConfigureTransientBase(IServiceCollection services)

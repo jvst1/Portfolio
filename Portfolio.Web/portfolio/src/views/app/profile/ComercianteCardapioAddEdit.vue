@@ -41,7 +41,7 @@
   
 <script>
 export default {
-    name: "AccountPage",
+    name: "ComercianteCardapioAddEditPage",
     data() {
         return {
             show: false,
@@ -91,7 +91,7 @@ export default {
             const dto = { ...this.formData };
             dto.codigoUsuario = this.$store.getters.user.codigoUsuario;
 
-            this.$api.CardapioComerciante.Persist(dto).then((response) => {
+            this.$api.Cardapio.Persist(dto.codigoUsuario, dto).then((response) => {
                 if (this.$api.UI.PostAction(response)) {
                     this.formData = {};
                     this.show = false;

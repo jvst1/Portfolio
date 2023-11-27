@@ -19,7 +19,6 @@ const _axios = axios.create(config);
 _axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log("test request interceptor", config);
     return config;
   },
   function (error) {
@@ -32,7 +31,6 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   function (response) {
     // Do something with response data
-    console.log("test response interceptor", response);
     return response;
   },
   function (error) {

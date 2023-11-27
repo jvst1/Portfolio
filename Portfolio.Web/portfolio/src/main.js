@@ -45,7 +45,6 @@ Vue.prototype.$theme = {
 };
 
 const themeString = localStorage.getItem("theme");
-console.log("themeString", themeString, typeof themeString);
 
 if (themeString && themeString !== "undefined" && themeString !== "") {
   try {
@@ -54,8 +53,6 @@ if (themeString && themeString !== "undefined" && themeString !== "") {
   } catch (error) {
     console.error("Error parsing themeString:", error);
   }
-} else {
-  console.log("No valid themeString found in localStorage");
 }
 
 Vue.use(VueLodash, { lodash: lodash });
@@ -79,7 +76,7 @@ api.Enum.GetAll().then(function (response) {
   var items = Object.keys(response);
   if (!api.Enums)
     api.Enums = {};
-  
+
   items.forEach(function (p) {
     api.Enums[p] = {};
     response[p].forEach(function (o) {

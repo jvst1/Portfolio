@@ -41,6 +41,11 @@ namespace Portfolio.Domain.Services.Cad
         {
             return CrudRepository.GetAll(search, situacao);
         }
+        
+        public List<Usuario> GetAllComerciantes()
+        {
+            return CrudRepository.GetAllComerciantes();
+        }
 
         public List<GuidStringRawQueryResponse> GetToSelect()
         {

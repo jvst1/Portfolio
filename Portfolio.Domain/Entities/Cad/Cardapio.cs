@@ -4,7 +4,7 @@ using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Domain.Entities.Cad
 {
-    public class CardapioComerciante : EntityBase<long>
+    public class Cardapio : EntityBase<long>
     {
         public Guid CodigoUsuario { get; set; }
 

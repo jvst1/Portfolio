@@ -2,7 +2,7 @@
     <v-container>
         <v-row>
             <v-col cols="12" md="4" lg="3">
-                <v-tabs vertical v-model="activeTab" @change="handleTabChange">
+                <v-tabs vertical v-model="activeTab">
                     <v-tab v-for="tab in tabs" :key="tab.name">{{ tab.title }}</v-tab>
                 </v-tabs>
             </v-col>
@@ -18,16 +18,16 @@
 </template>
   
 <script>
-import ContaCliente from './profile/ContaCliente.vue';
-import EnderecoCliente from './profile/EnderecoCliente.vue';
+import ClienteConta from './ClienteConta.vue';
+import ClienteEndereco from './ClienteEndereco.vue';
 
 export default {
     data() {
         return {
             activeTab: 0,
             tabs: [
-                { name: 'conta', title: 'Minha Conta', component: ContaCliente },
-                { name: 'endereco', title: 'Meus Endereços', component: EnderecoCliente },
+                { name: 'conta', title: 'Minha Conta', component: ClienteConta },
+                { name: 'endereco', title: 'Meus Endereços', component: ClienteEndereco },
             ],
         };
     },

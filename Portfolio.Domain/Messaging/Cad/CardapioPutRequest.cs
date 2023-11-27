@@ -1,8 +1,6 @@
-﻿using Portfolio.Domain.Base.Interfaces.Data;
-
-namespace Portfolio.Domain.Messaging.Cad
+﻿namespace Portfolio.Domain.Messaging.Cad
 {
-    public class CardapioComercianteResponse : IRawQueryResponse
+    public class CardapioPutRequest
     {
         public Guid Codigo { get; set; }
         public Guid CodigoUsuario { get; set; }
@@ -14,7 +12,5 @@ namespace Portfolio.Domain.Messaging.Cad
         public decimal ValorDescontoPercentual { get; set; }
         public bool VendaAtiva { get; set; }
         public bool AplicarDesconto { get; set; }
-        public DateTime? DtInclusao { get; set; }
-        public DateTime? DtAlteracao { get; set; }
     }
 }

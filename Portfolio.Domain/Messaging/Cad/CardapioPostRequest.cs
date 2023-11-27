@@ -1,8 +1,7 @@
 ﻿namespace Portfolio.Domain.Messaging.Cad
 {
-    public class CardapioComerciantePutRequest
+    public class CardapioPostRequest
     {
-        public Guid Codigo { get; set; }
         public Guid CodigoUsuario { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }

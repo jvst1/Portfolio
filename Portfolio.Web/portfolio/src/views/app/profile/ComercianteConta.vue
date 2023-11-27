@@ -32,7 +32,7 @@
   
 <script>
 export default {
-    name: "ContaComerciantePage",
+    name: "ComercianteContaPage",
     data() {
         return {
             tempoMedioEntregaEnum: this.$api.Enums.TempoMedioEntrega,

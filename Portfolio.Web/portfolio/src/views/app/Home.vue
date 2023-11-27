@@ -14,8 +14,8 @@
 
       <div class="products__list" v-if="!isLoading">
         <card-estabelecimento-comercial v-for="(product) in productList" :key="`productCard__${product.codigo}`"
-          :image="product.image" :featured="product.featured" :title="product.name" :minTime="product.deliveryTime"
-          :minSum="product.minimalOrder" :tags="product.tags" />
+          :image="product.imageUrl" :featured="product.featured" :title="product.nome" :minTime="product.tempoEntrega"
+          :minSum="product.valorMinimoPedido" :tags="product.tags" :codigo="product.codigo" />
       </div>
     </div>
   </section>
@@ -41,73 +41,14 @@ export default {
       this.$api.Categoria.GetAll().then((response) => {
         this.categoryList = [...response];
       })
-      this.productList = [
-        {
-          categories:
-            [
-              {
-                id: "353772735829115091",
-                Image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/v1673642603/sushi_nfwx8a.svg",
-                name: "Sushi"
-              }
-            ],
-          deliveryTime: "30-40 min",
-          id: "352601598882480219",
-          image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1672525249/food-delivery-app/1_huvxq7.jpg",
-          minimalOrder: "$32 min sum",
-          name: "Royal Sushi House",
-          tags: ["Sushi", "VIP", "easy"],
-          featured: 'Recomendado'
-        },
-        {
-          categories:
-            [
-              {
-                id: "353772735829115092",
-                Image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/v1673642603/sushi_nfwx8a.svg",
-                name: "Sushi"
-              }
-            ],
-          deliveryTime: "30-40 min",
-          id: "352601598882444339",
-          image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1672525249/food-delivery-app/1_huvxq7.jpg",
-          minimalOrder: "$32 min sum",
-          name: "Royal Sushi House",
-          tags: ["Sushi", "VIP", "easy"],
-        },
-        {
-          categories:
-            [
-              {
-                id: "35377273582911321",
-                Image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/v1673642603/sushi_nfwx8a.svg",
-                name: "Sushi"
-              }
-            ],
-          deliveryTime: "30-40 min",
-          id: "352601598882480339",
-          image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1672525249/food-delivery-app/1_huvxq7.jpg",
-          minimalOrder: "$32 min sum",
-          name: "Royal Sushi House",
-          tags: ["Sushi", "123", "xzc"],
-        },
-        {
-          categories:
-            [
-              {
-                id: "3537727358291151091",
-                Image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/v1673642603/sushi_nfwx8a.svg",
-                name: "Sushi"
-              }
-            ],
-          deliveryTime: "30-40 min",
-          id: "35260159888248035",
-          image: "https://res.cloudinary.com/dn5rtwwcx/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1672525249/food-delivery-app/1_huvxq7.jpg",
-          minimalOrder: "$32 min sum",
-          name: "Royal Sushi House",
-          tags: ["Peixe", "NNN", "VVV"],
-        },
-      ]
+
+      this.$api.Usuario.GetAllComerciantes().then((response) => {
+        this.productList = [];
+        response.map(item => {
+          item.tags = JSON.parse(item.tags);
+          this.productList.push(item);
+        })
+      })
 
       this.dealList = [
         {

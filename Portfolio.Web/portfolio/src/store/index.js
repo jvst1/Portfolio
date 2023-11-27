@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
     drawer: false,
     mensagem: {},
     confirmacao: {},
+    carrinho: { codigoComerciante: '', items: [], count: 0 },
     loading: false,
   },
   mutations: {
@@ -67,6 +68,23 @@ export const store = new Vuex.Store({
     loading(state, obj) {
       state.loading = obj;
     },
+    ADD_TO_CART(state, { dto }) {
+      if (state.carrinho.codigoComerciante && state.carrinho.codigoComerciante != dto.codigoComerciante) {
+        this.$api.UI.ShowError("ERRO!", "Houve uma tentativa de adicionar produtos de estabelecimentos comerciais diferentes ao mesmo tempo no carrinho. Por favor escolha entre eles para continuar com o pedido.")
+      } else {
+        const record = state.carrinho.items.find(item => item.codigo === dto.added.codigo);
+
+        if (!record) {
+          state.carrinho.codigoComerciante = dto.codigoComerciante;
+          state.carrinho.items.push(dto.added);
+        } else {
+          record.quantidade = dto.added.quantidade;
+          record.comentario = dto.added.comentario;
+        }
+
+        state.carrinho.count = state.carrinho.items.length;
+      }
+    }
   },
   actions: {
     setUserData({ commit }, data) {
@@ -75,6 +93,9 @@ export const store = new Vuex.Store({
     logout({ commit }) {
       commit("CLEAR_USER_DATA");
     },
+    addToCart({ commit }, dto) {
+      commit("ADD_TO_CART", dto)
+    }
   },
   getters: {
     isMobile(state) {
@@ -113,6 +134,12 @@ export const store = new Vuex.Store({
       if (!state.user.profile) { state.user.profile = {} }
 
       return state.user
+    },
+    carrinho(state) {
+      if (!state.carrinho)
+        state.carrinho = { codigoComerciante: '', items: [], count: 0 };
+
+      return state.carrinho;
     },
   },
 });
