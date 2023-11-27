@@ -5,26 +5,31 @@
         {{ model.codigo ? "Editar" : "Novo" }} Usuario
       </template>
       <template v-slot:body>
-        <!--email-->
+        <v-row>
+          <v-col cols="12">
+            <input-text label="Nome" v-model="model.nome" required/>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12">
+            <input-documento label="Documento Federal" v-model="model.documentoFederal" required/>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col cols="12">
             <input-email label="Email" v-model="model.email" required :disabled="blockEdit" />
           </v-col>
         </v-row>
-        <!--identificador-->
         <v-row>
           <v-col cols="12">
             <input-text label="Identificador" v-model="model.identificador" />
           </v-col>
         </v-row>
-        <!--telefone celular-->
         <v-row>
           <v-col cols="12">
             <input-phone label="Telefone Celular" v-model="model.telefoneCelular" />
           </v-col>
         </v-row>
-
-        <!--tipo perfil-->
         <v-row>
           <v-col xs="12" cols="12">
             <input-multiselect label="Tipo perfil" v-model="model.tipoPerfil" :options="arrayPerfil" :text="'name'" />

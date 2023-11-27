@@ -71,9 +71,29 @@ namespace Portfolio.Domain.Entities.Cad
 
         protected override void InsertValidate()
         {
+            if (Nome.IsNullOrWhiteSpace())
+                AddBrokenRule(new BusinessRule("O nome fornecido é nulo ou inválido, por favor confira os dados fornecidos", nameof(Nome)));
+
+            if (!Nome.IsNullOrWhiteSpace() && Nome.Length > 255)
+                AddBrokenRule(new BusinessRule("O nome fornecido é inválido, confira os dados fornecidos. Tenha certeza que o nome não ultrapasse 255 caractéres", nameof(Nome)));
+
+            if (Identificador.IsNullOrWhiteSpace())
+                AddBrokenRule(new BusinessRule("O apelido é nulo ou inválido, por favor confira os dados fornecidos", nameof(Identificador)));
+
+            if (!Identificador.IsNullOrWhiteSpace() && Identificador.Length > 30)
+                AddBrokenRule(new BusinessRule("O apelido é inválido, confira os dados fornecidos. Tenha certeza que o apelido não ultrapasse 30 caractéres", nameof(Identificador)));
 
             if (!Util.ValidaEmail(Email))
                 AddBrokenRule(new BusinessRule("O endereço de e-mail fornecido é inválido. Por favor, insira um endereço de e-mail válido no formato usuario@dominio.com", nameof(Email)));
+
+            if (!Email.IsNullOrWhiteSpace() && Email.Length > 255)
+                AddBrokenRule(new BusinessRule("O email fornecido é inválido, confira os dados fornecidos. Tenha certeza que o email não ultrapasse 100 caractéres", nameof(Email)));
+
+            if (DocumentoFederal.IsNullOrWhiteSpace() || !Util.ValidaDocumento(DocumentoFederal))
+                AddBrokenRule(new BusinessRule("O documento federal fornecido é nulo ou inválido, por favor confira os dados fornecidos", nameof(DocumentoFederal)));
+
+            if (!DocumentoFederal.IsNullOrWhiteSpace() && DocumentoFederal.Length > 255)
+                AddBrokenRule(new BusinessRule("O documento federal fornecido é inválido, confira os dados fornecidos. Tenha certeza que o documento federal não ultrapasse 255 caractéres", nameof(DocumentoFederal)));
 
             if (!Tags.IsNullOrWhiteSpace())
             {
