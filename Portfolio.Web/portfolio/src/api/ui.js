@@ -168,8 +168,12 @@ const ui = {
       return "";
     },
     Currency: function (value) {
-      const val = (value / 1).toFixed(2).replace(".", ",");
-      return "R$ " + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      const formatter = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+      });
+      return formatter.format(value);
     },
     Decimal: function(value) {
       if (value) {

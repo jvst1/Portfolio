@@ -19,7 +19,7 @@ namespace Portfolio.Infrastructure.Security
             AsymmetricCipherKeyPair KeyPair = (AsymmetricCipherKeyPair)pr.ReadObject();
             RSAParameters rsaParams = DotNetUtilities.ToRSAParameters((RsaPrivateCrtKeyParameters)KeyPair.Private);
 
-            RSACryptoServiceProvider csp = new RSACryptoServiceProvider();// cspParams);
+            RSACryptoServiceProvider csp = new RSACryptoServiceProvider(2048);// cspParams);
             csp.ImportParameters(rsaParams);
             return csp;
         }
@@ -35,7 +35,7 @@ namespace Portfolio.Infrastructure.Security
             AsymmetricKeyParameter publicKey = (AsymmetricKeyParameter)pr.ReadObject();
             RSAParameters rsaParams = DotNetUtilities.ToRSAParameters((RsaKeyParameters)publicKey);
 
-            RSACryptoServiceProvider csp = new RSACryptoServiceProvider();// cspParams);
+            RSACryptoServiceProvider csp = new RSACryptoServiceProvider(2048);// cspParams);
             csp.ImportParameters(rsaParams);
             return csp;
         }
