@@ -33,6 +33,10 @@ namespace Portfolio.Domain.Entities.Core
         [Truncate(100)]
         public string ReplyTo { get; set; }
 
+        [Truncate(255)]
+        public string MessageId { get; set; }
+        public string Replace { get; set; }
+
         protected override void InsertValidate()
         {
             if (De.IsNullOrWhiteSpace())
