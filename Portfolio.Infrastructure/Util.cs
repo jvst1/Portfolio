@@ -12,11 +12,6 @@ namespace Portfolio.Infrastructure
         private const string LetrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
         private const string Numeros = "1234567890";
 
-        public static string RemoveCaracteresEspeciais(string text)
-        {
-            return Regex.Replace(text, @"[^a-zA-Z1-9 ]+", "");
-        }
-
         public static string RemoveAcentos(string text)
         {
             if (string.IsNullOrWhiteSpace(text)) return text;
@@ -35,7 +30,7 @@ namespace Portfolio.Infrastructure
 
         public static string DeixaNumeros(string texto)
         {
-            return string.IsNullOrWhiteSpace(texto) ? string.Empty : string.Join("", Regex.Split(texto, @"[^\d]"));
+            return string.IsNullOrWhiteSpace(texto) ? string.Empty : string.Join("", Regex.Split(texto, @"[^\d]", RegexOptions.None, new TimeSpan(0, 0, 30)));
         }
 
         public static bool ValidaDocumento(string documento)

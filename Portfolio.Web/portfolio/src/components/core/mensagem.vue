@@ -10,7 +10,7 @@
           </v-btn>
         </v-card-title>
         <v-divider></v-divider>
-        <v-card-text class="pa-5" v-html="mensagemTexto"></v-card-text>
+        <v-card-text class="pa-5">{{ mensagemTexto }}</v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>

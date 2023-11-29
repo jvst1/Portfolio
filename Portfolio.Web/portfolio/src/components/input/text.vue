@@ -8,7 +8,7 @@
       <slot :name="name" />
     </template>
     <template v-slot:message="{ message, key }">
-      <span v-html="message" :key="key"></span>
+      <span :key="key"> {{ message }}</span>
     </template>
   </v-text-field>
 </template>

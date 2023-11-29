@@ -171,10 +171,14 @@ const ui = {
       const val = (value / 1).toFixed(2).replace(".", ",");
       return "R$ " + val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    Decimal: function (value) {
+    Decimal: function(value) {
       if (value) {
-        const val = (value / 1).toFixed(2).replace(".", ",");
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        const formatter = new Intl.NumberFormat('pt-BR', {
+          style: 'decimal',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        return formatter.format(value);
       }
       return "";
     },
