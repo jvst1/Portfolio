@@ -8,7 +8,7 @@
         <div class="p-4 p-sm-5">
           <!-- Logo -->
           <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
-            <img src="@/assets/logo.png" width="100" />
+            <img src="@/assets/logo.png" width="100" alt="logo"/>
           </div>
           <!-- / Logo -->
 

@@ -119,7 +119,6 @@ html {
   background: #44A4FC;
   border-left: 5px solid #187FE7;
   font-family: "Roboto", sans-serif !important;
-  font-size: 14px;
 }
 
 .custom-notification.warn {

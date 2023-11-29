@@ -40,13 +40,6 @@ module.exports = {
         options.compilerOptions.preserveWhitespace = true;
         return options;
       });
-
-    // Non-production config
-    if (process.env.NODE_ENV !== "production") {
-      // production config
-    } else {
-      // Non-production config
-    }
   },
   configureWebpack: {
     devServer: {

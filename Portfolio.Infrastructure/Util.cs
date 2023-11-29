@@ -117,137 +117,6 @@ namespace Portfolio.Infrastructure
             return cpf.EndsWith(digito);
         }
 
-        public static int GeraDigitoModulo11(string numero)
-        {
-            int[] intPesos = { 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-            var intSoma = 0;
-            var intIdx = 0;
-
-            for (var intPos = numero.Length - 1; intPos >= 0; intPos--)
-            {
-                intSoma += Convert.ToInt32(numero[intPos].ToString()) * intPesos[intIdx];
-                if (intIdx == 9)
-                {
-                    intIdx = 2;
-                }
-                else
-                {
-                    intIdx++;
-                }
-            }
-
-            var intResto = intSoma * 10 % 11;
-            var intDigito = intResto;
-            if (intDigito >= 10)
-                intDigito = 0;
-
-            return intDigito;
-        }
-
-        public static int GeraDigitoModulo10(string numero)
-        {
-            numero = DeixaNumeros(numero);
-            numero = numero.PadLeft(12, '0');
-            // Baseado no calculo fornecido pelo Edilson
-            int[] intPesos = { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 };
-
-            var intSoma = 0;
-
-            for (var intPos = 0; intPos < numero.Length; intPos++)
-            {
-                var produto = Convert.ToInt32(numero[intPos].ToString()) * intPesos[intPos];
-
-                if (produto > 9)
-                {
-                    produto = Convert.ToInt32(produto.ToString().Substring(0, 1)) + Convert.ToInt32(produto.ToString().Substring(1, 1));
-                }
-
-                intSoma += produto;
-            }
-
-            var intResto = intSoma % 10;
-
-            var intDigito = 10 - intResto;
-
-            if (intDigito > 9)
-                intDigito = 0;
-
-            return intDigito;
-        }
-
-        public static string MascaraCartao(string cartao)
-        {
-            if (cartao.Length == 16)
-            {
-                return cartao.Substring(0, 4) + "." +
-                       cartao.Substring(4, 4) + "." +
-                       cartao.Substring(8, 4) + "." +
-                       cartao.Substring(12, 4);
-            }
-            return cartao;
-        }
-
-        public static string MascaraCep(string cep)
-        {
-            return cep.Substring(0, 2) + cep.Substring(2, 3) + "-" + cep.Substring(5, 3);
-        }
-
-        public static string MascaraCelular(string celular)
-        {
-            return $"({celular.Substring(0, 2)}) {celular.Substring(2, 5)}-{celular.Substring(5, 4)}";
-        }
-
-        public static string MascaraDocFederal(string doc)
-        {
-            if (doc.Length == 11)
-            {
-                return doc.Substring(0, 3) + "." + doc.Substring(3, 3) + "." + doc.Substring(6, 3) + "-" + doc.Substring(9, 2);
-            }
-            if (doc.Length == 14)
-            {
-                return doc.Substring(0, 2) + "." + doc.Substring(2, 3) + "." + doc.Substring(5, 3) + "/" + doc.Substring(8, 4) + "-" + doc.Substring(12, 2);
-            }
-            return doc;
-        }
-
-        public static string CreatePassword()
-        {
-            var tamanho = 8;
-
-            var valormaximo = SenhaCaracteresValidos.Length - 1;
-
-            var random = new Random(DateTime.Now.Millisecond);
-
-            var senhaBuilder = new StringBuilder(tamanho);
-
-            for (var i = 0; i < tamanho; i++)
-                senhaBuilder.Append(SenhaCaracteresValidos[random.Next(0, valormaximo)]);
-
-            var senha = senhaBuilder.ToString();
-
-            if (!senha.Any(char.IsDigit))
-            {
-                var posNum = random.Next(0, Numeros.Length - 1);
-                var posSenha = random.Next(0, senha.Length - 1);
-                senhaBuilder[posSenha] = Numeros[posNum];
-            }
-            if (!senha.Any(c => char.IsLetter(c) && char.IsUpper(c)))
-            {
-                var posCaracter = random.Next(0, LetrasMaiusculas.Length - 1);
-                var posSenha = random.Next(0, senha.Length - 1);
-                senhaBuilder[posSenha] = LetrasMaiusculas[posCaracter];
-            }
-            if (!senha.Any(c => char.IsLetter(c) && char.IsLower(c)))
-            {
-                var posCaracter = random.Next(0, LetrasMinusculas.Length - 1);
-                var posSenha = random.Next(0, senha.Length - 1);
-                senhaBuilder[posSenha] = LetrasMinusculas[posCaracter];
-            }
-
-            return senhaBuilder.ToString();
-        }
-
         public static bool ValidaEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -354,10 +223,10 @@ namespace Portfolio.Infrastructure
                 return false;
             }
 
-            return numcel.StartsWith("6") ||
-                   numcel.StartsWith("7") ||
-                   numcel.StartsWith("8") ||
-                   numcel.StartsWith("9");
+            return numcel.StartsWith('6') ||
+                   numcel.StartsWith('7') ||
+                   numcel.StartsWith('8') ||
+                   numcel.StartsWith('9');
         }
 
         public static bool ValidaApenasNumeros(string str)
@@ -369,13 +238,6 @@ namespace Portfolio.Infrastructure
         {
             var temp = str.ToUpper();
             return temp.All(c => c >= 'A' && c <= 'Z');
-        }
-
-        public static string RemoveZeroEsquerda(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input)) return input;
-
-            return long.Parse(input).ToString();
         }
     }
 }

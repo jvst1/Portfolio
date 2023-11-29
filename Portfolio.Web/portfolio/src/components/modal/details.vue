@@ -66,7 +66,7 @@ export default {
       const list = [];
       switch (typeof value) {
         case "object":
-          Object.keys(value).map(function (p) {
+          Object.keys(value).forEach(function (p) {
             th.id++;
             const item = { name: p + ": ", id: th.id };
             if (th.hasChildren(value[p])) {
@@ -120,12 +120,7 @@ export default {
     },
     heigth: {
       get() {
-        switch (this.size) {
-          case "sm":
-            return "90%";
-          default:
-            return "90%";
-        }
+        return "90%"
       },
       set() { },
     },

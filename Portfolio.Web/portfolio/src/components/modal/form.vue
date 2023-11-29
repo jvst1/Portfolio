@@ -149,12 +149,7 @@ export default {
     },
     heigth: {
       get() {
-        switch (this.size) {
-          case "sm":
-            return "90%";
-          default:
-            return "90%";
-        }
+        return "90%"
       },
       set() { },
     },

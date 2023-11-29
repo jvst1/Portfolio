@@ -29,6 +29,6 @@ export default new Vuetify({
     current: "pt",
   },
   icons: {
-    iconfont: "mdi" || "fa" || "far" || "fas" || "md",
+    iconfont: "mdi",
   },
 });
