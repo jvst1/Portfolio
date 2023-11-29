@@ -23,7 +23,7 @@ namespace Portfolio.Data.Security.Factory
 
             var config = cfgBuilder.Build();
 
-            var connstr = config.GetConnectionString("Identity"); //todo: set connectionString
+            var connstr = config.GetConnectionString("Portfolio");
 
             var assemblyName = typeof(PersistedGrantDbContextFactory).GetTypeInfo().Assembly.GetName().Name;
             var optionsBuilder = new DbContextOptionsBuilder<PersistedGrantDbContext>();

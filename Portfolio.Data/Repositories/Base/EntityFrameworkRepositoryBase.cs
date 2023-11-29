@@ -9,7 +9,7 @@ namespace Portfolio.Data.Repositories.Base
     {
         protected readonly IDbService Context;
 
-        public EntityFrameworkRepositoryBase(IDbProvider dbProvider)
+        protected EntityFrameworkRepositoryBase(IDbProvider dbProvider)
         {
             var dbService = dbProvider.GetDbService<TEntity>(OrmEngine.Ef);
 

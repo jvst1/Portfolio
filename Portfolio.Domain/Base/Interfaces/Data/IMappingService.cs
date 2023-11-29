@@ -2,14 +2,12 @@
 {
     public interface IMappingService<TDomain>
     {
-        TDomain ConvertToDomain<T>(T type);
-        T ConvertFromDomain<T>(TDomain domain);
-        TOther ConvertOther<T, TOther>(T domain);
-
         void UpdateDomain<T>(TDomain destination, T source);
-
-        List<T> ConvertFromDomain<T>(List<TDomain> domains);
+        TDomain ConvertToDomain<T>(T type);
         List<TDomain> ConvertToDomain<T>(List<T> types);
+        T ConvertFromDomain<T>(TDomain domain);
+        List<T> ConvertFromDomain<T>(List<TDomain> domains);
+        TOther ConvertOther<T, TOther>(T domain);
         List<TOther> ConvertOther<T, TOther>(List<T> domain);
     }
 }

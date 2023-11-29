@@ -23,14 +23,13 @@ namespace Portfolio.Api.Identity
             var disco = await client.GetDiscoveryDocumentAsync(identityURL);
             if (disco.IsError) throw new Exception(disco.Error);
 
-            //todo: definir clientId
             var clientToken = CreateClientToken("api", disco.TokenEndpoint);
 
             using var request = new ClientCredentialsTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = "api", //todo: definir clientId
-                Scope = "api", //todo: definir scopes
+                ClientId = "api",
+                Scope = "api",
                 ClientAssertion = { Type = OidcConstants.ClientAssertionTypes.JwtBearer, Value = clientToken },
                 ClientCredentialStyle = ClientCredentialStyle.PostBody
             };
@@ -44,7 +43,7 @@ namespace Portfolio.Api.Identity
         private static string CreateClientToken(string clientId, string audience)
         {
             var pem = File.ReadAllText("Identity\\private.pem");
-            var provider = RSAKeys.ImportPrivateKey(pem);
+            var provider = RsaKeys.ImportPrivateKey(pem);
             var now = DateTime.UtcNow;
 
             var token = new JwtSecurityToken(

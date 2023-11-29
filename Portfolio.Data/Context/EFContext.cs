@@ -12,6 +12,8 @@ using Portfolio.Infrastructure.Attributes;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Portfolio.Infrastructure.Exceptions;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq;
 
 namespace Portfolio.Data.Context
 {
@@ -21,10 +23,6 @@ namespace Portfolio.Data.Context
 
         public string Identificador { get; }
         public CodigoUsuarioHelper CodigoUsuarioHelper { get; }
-
-        //public EfContext(Microsoft.Extensions.Configuration.IConfiguration configuration) : base(new DbContextOptionsBuilder<EfContext>().UseSqlServer(configuration.GetConnectionString("Portfolio"), o => o.MigrationsAssembly("Portfolio.Api")).Options)
-        //{
-        //} //migration: Descomentar para aplicar migration
 
         public EfContext(DbContextOptions<EfContext> options, CodigoUsuarioHelper codigoHelper, string identificador) : base(options)
         {
@@ -64,45 +62,60 @@ namespace Portfolio.Data.Context
 
         private void ApplyCustomAnnotation()
         {
-            foreach (var entry in ChangeTracker.Entries()
-                .Where(entry => entry.State == EntityState.Added || entry.State == EntityState.Modified))
+            foreach (var entry in ChangeTracker.Entries().Where(IsEntryAddedOrModified))
+                ProcessEntryAnnotations(entry);
+        }
+
+        private bool IsEntryAddedOrModified(EntityEntry entry)
+        {
+            return entry.State == EntityState.Added || entry.State == EntityState.Modified;
+        }
+
+        private void ProcessEntryAnnotations(EntityEntry entry)
+        {
+            var errors = new StringBuilder();
+            var properties = entry.Entity.GetType().GetProperties();
+
+            foreach (var property in properties)
+                ApplyAnnotationsToProperty(entry, property, errors);
+
+            if (errors.Length > 0)
+                throw new PortfolioException($"As seguintes propriedades excederam o tamanho máximo permitido: {Environment.NewLine}{errors}");
+        }
+
+        private void ApplyAnnotationsToProperty(EntityEntry entry, PropertyInfo property, StringBuilder errors)
+        {
+            if (!(property.GetValue(entry.Entity) is string propertyValue)) 
+                return;
+
+            foreach (var attribute in property.GetCustomAttributes())
+                ProcessAttribute(entry, property, attribute, propertyValue, errors);
+        }
+
+        private void ProcessAttribute(EntityEntry entry, PropertyInfo property, object attribute, string propertyValue, StringBuilder errors)
+        {
+            switch (attribute)
             {
-                var type = entry.Entity.GetType();
-
-                var errosDeTamanho = new StringBuilder();
-
-                foreach (var property in type.GetProperties())
-                {
-                    if (!(property.GetValue(entry.Entity) is string propVal)) continue;
-
-                    foreach (var attr in property.GetCustomAttributes())
-                    {
-                        switch (attr)
-                        {
-                            case ForceCase forceAttribute:
-                                property.SetValue(entry.Entity, forceAttribute.Apply(propVal));
-                                break;
-                            case Truncate truncateAttribute:
-                                property.SetValue(entry.Entity, truncateAttribute.Apply(propVal));
-                                break;
-                            case MaxLengthAttribute maxLengthAttribute:
-                                ValidaTamanho(maxLengthAttribute.Length, propVal, property.Name, errosDeTamanho);
-                                break;
-                        }
-                    }
-                }
-
-                if (errosDeTamanho.Length > 0)
-                    throw new PortfolioException($"As seguintes propriedades excederam o tamanho máximo permitido: {Environment.NewLine}{errosDeTamanho}");
+                case ForceCase forceAttribute:
+                    property.SetValue(entry.Entity, forceAttribute.Apply(propertyValue));
+                    break;
+                case Truncate truncateAttribute:
+                    property.SetValue(entry.Entity, truncateAttribute.Apply(propertyValue));
+                    break;
+                case MaxLengthAttribute maxLengthAttribute:
+                    ValidateLength(maxLengthAttribute.Length, propertyValue, property.Name, errors);
+                    break;
             }
         }
-        private static void ValidaTamanho(int maxLength, string propVal, string propertyName, StringBuilder strBuilder)
+
+        private void ValidateLength(int maxLength, string value, string propertyName, StringBuilder errors)
         {
-            if (propVal.Length > maxLength)
-                strBuilder.AppendLine($"{propertyName} - Máximo: {maxLength} / Informado: {propVal.Length}");
+            if (value.Length > maxLength)
+                errors.AppendLine($"{propertyName} - Máximo: {maxLength} / Informado: {value.Length}");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             //Fazendo o mapeamento com o banco de dados
             //Pega todas as classes que estão implementando a interface IMapping
@@ -130,7 +143,7 @@ namespace Portfolio.Data.Context
                 // ReSharper disable once PossibleNullReferenceException, é sabido neste ponto que o tipo terá BaseType
                 LoadedMappings[mappingType.BaseType.GetGenericArguments()[0].GUID] = mappingClass;
 
-                modelBuilder.ApplyConfiguration(mappingClass);
+                builder.ApplyConfiguration(mappingClass);
             }
 
             // Registrar os raw query //migration: comentar para aplicar migration
@@ -139,7 +152,7 @@ namespace Portfolio.Data.Context
                 .Where(p => typeof(IRawQueryResponse).IsAssignableFrom(p) && !p.IsInterface);
 
             foreach (var type in types)
-                modelBuilder.Entity(type).HasNoKey();
+                builder.Entity(type).HasNoKey();
         }
     }
 }

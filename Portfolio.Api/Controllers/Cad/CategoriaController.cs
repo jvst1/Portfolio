@@ -25,7 +25,7 @@ namespace Portfolio.Api.Controllers.Cad
 
         [HttpGet("{id}")]
         [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Cliente) + "," + nameof(TipoPerfilUsuario.Comerciante))]
-        public ActionResult<CategoriaResponse> Get(Guid id)
+        public ActionResult<CategoriaResponse> GetById(Guid id)
         {
             return _categoriaApplicationService.GetById(id);
         }

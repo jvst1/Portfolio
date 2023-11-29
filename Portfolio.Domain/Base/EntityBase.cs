@@ -64,9 +64,9 @@ namespace Portfolio.Domain.Base
                 throw new BusinessRuleException(brokenRules);
         }
 
-        public override bool Equals(object entity)
+        public override bool Equals(object obj)
         {
-            var entityBase = entity as EntityBase<TIdType>;
+            var entityBase = obj as EntityBase<TIdType>;
             return entityBase != null && this == entityBase;
         }
 

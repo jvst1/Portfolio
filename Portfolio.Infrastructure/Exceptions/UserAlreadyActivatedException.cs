@@ -2,7 +2,7 @@
 
 namespace Portfolio.Infrastructure.Exceptions
 {
-    public class UserAlreadyActivatedException : PortfolioException
+    public class UserAlreadyActivatedException : Exception
     {
         public UserAlreadyActivatedException()
         {

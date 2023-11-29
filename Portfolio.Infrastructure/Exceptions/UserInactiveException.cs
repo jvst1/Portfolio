@@ -2,7 +2,7 @@
 
 namespace Portfolio.Infrastructure.Exceptions
 {
-    public class UserInactiveException : PortfolioException
+    public class UserInactiveException : Exception
     {
         public UserInactiveException()
         {

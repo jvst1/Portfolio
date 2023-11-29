@@ -24,7 +24,7 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [HttpGet("{id}")]
-        public ActionResult<UsuarioEnderecoResponse> Get(Guid id)
+        public ActionResult<UsuarioEnderecoResponse> GetById(Guid id)
         {
             return _usuarioEnderecoApplicationService.GetById(id);
         }

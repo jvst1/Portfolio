@@ -34,13 +34,13 @@ namespace Portfolio.Api
 
             services.AddDependencyInjection();
             services.AddAutoMapper();
-            services.AddMvcCore(options => { options.Filters.Add(typeof(CodigoUsuarioActionFilter)); }).AddApiExplorer();
+            services.AddMvcCore(options => { options.Filters.Add(typeof(CodigoUsuarioActionFilterAttribute)); }).AddApiExplorer();
             services.AddSwagger("Portfolio", "v1");
             services.AddIdentityServer()
                     .AddConfigurationStore(options =>
                     {
                         options.ConfigureDbContext = b =>
-                            b.UseSqlServer(Configuration.GetConnectionString("Portfolio")); //todo: set connectionString
+                            b.UseSqlServer(Configuration.GetConnectionString("Portfolio"));
                     });
             services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 

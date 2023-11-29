@@ -41,7 +41,7 @@ namespace Portfolio.Api.Controllers.Cad
 
         [Authorize()]
         [HttpGet("{id}")]
-        public ActionResult<UsuarioResponse> Get(Guid id)
+        public ActionResult<UsuarioResponse> GetById(Guid id)
         {
             return _usuarioApplicationService.GetById(id);
         }

@@ -70,7 +70,6 @@ export default {
             this.show = false;
         },
         submit() {
-            //todo: finalizar envio de pedido
         },
         formatCurrency(value) {
             return this.$api.UI.Format.Currency(value);

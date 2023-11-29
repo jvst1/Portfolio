@@ -74,7 +74,7 @@ export default {
     retornaArrayPerfil(perfil) {
       const p = []
       for (var t in this.$api.Enums.TipoPerfilUsuario) {
-        if ((perfil & this.$api.Enums.TipoPerfilUsuario[t]) > 0) {
+        if ((perfil && this.$api.Enums.TipoPerfilUsuario[t]) > 0) {
           perfil = perfil - this.$api.Enums.TipoPerfilUsuario[t]
           p.push(this.arrayPerfil.find(o => o.value === this.$api.Enums.TipoPerfilUsuario[t]).value)
         }

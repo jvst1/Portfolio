@@ -1,9 +1,8 @@
-﻿using Portfolio.Infrastructure.Exceptions;
-using System.Text;
+﻿using System.Text;
 
 namespace Portfolio.Domain.Base
 {
-    public class BusinessRuleException : PortfolioException
+    public class BusinessRuleException : Exception
     {
         public List<BusinessRule> BrokenRules { get; set; }
 

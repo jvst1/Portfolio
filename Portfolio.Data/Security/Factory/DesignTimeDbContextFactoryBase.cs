@@ -32,7 +32,7 @@ namespace Portfolio.Data.Security.Factory
 
             var config = builder.Build();
 
-            var connstr = config.GetConnectionString("Identity"); //todo: set connectionString
+            var connstr = config.GetConnectionString("Portfolio");
 
             if (string.IsNullOrWhiteSpace(connstr))
             {

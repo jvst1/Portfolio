@@ -20,7 +20,7 @@ const localApp = new Vue({});
 
 function route(paths) {
   var list = [];
-  for (var i = 0; i < paths.length; i++) {
+  for (var i of paths) {
     list.push(getPath(paths[i]));
   }
   list.push({ path: "*", redirect: "/" });
@@ -64,7 +64,7 @@ function view(path) {
 function getChildren(path) {
   if (path.items) {
     var list = [];
-    for (var i = 0; i < path.items.length; i++) {
+    for (var i of path.items) {
       var item = path.items[i];
 
       if (

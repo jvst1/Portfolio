@@ -34,7 +34,7 @@ namespace Portfolio.Data.Context
         private static EfContext CreateContext(IConfiguration configuration, string identificador, CodigoUsuarioHelper codigoUsuarioHelper)
         {
             var optionsBuilder = new DbContextOptionsBuilder<EfContext>();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("Portfolio")); //todo: Set ConnectionString
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("Portfolio")); 
 
             return new EfContext(optionsBuilder.Options, codigoUsuarioHelper, identificador);
         }
@@ -102,9 +102,9 @@ namespace Portfolio.Data.Context
         }
 
         /// <inheritdoc />
-        public int RawCommand(string sqlCommand, params object[] parameters)
+        public int RawCommand(string command, params object[] parameters)
         {
-            return _db.Database.ExecuteSqlRaw(sqlCommand, parameters);
+            return _db.Database.ExecuteSqlRaw(command, parameters);
         }
 
         /// <inheritdoc />

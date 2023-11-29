@@ -7,7 +7,7 @@ using Portfolio.Infrastructure.Helpers;
 
 namespace Portfolio.Infrastructure.Filters
 {
-    public class CodigoUsuarioActionFilter : ActionFilterAttribute
+    public class CodigoUsuarioActionFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
@@ -37,7 +37,6 @@ namespace Portfolio.Infrastructure.Filters
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             base.OnActionExecuted(context);
-            //Codigo  : depois que a action executa 
         }
     }
 }

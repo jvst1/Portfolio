@@ -6,7 +6,7 @@ using Org.BouncyCastle.Security;
 
 namespace Portfolio.Infrastructure.Security
 {
-    public class RSAKeys
+    public class RsaKeys
     {
         /// <summary>
         /// Import OpenSSH PEM private key string into MS RSACryptoServiceProvider

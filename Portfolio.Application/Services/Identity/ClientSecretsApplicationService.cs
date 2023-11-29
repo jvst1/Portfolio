@@ -96,7 +96,7 @@ namespace Portfolio.Application.Services.Identity
         {
             try
             {
-                var provider = RSAKeys.ImportPublicKey(chavePem);
+                var provider = RsaKeys.ImportPublicKey(chavePem);
                 return JsonConvert.SerializeObject(
                     JsonWebKeyConverter.ConvertFromRSASecurityKey(
                         new RsaSecurityKey(provider.ExportParameters(false))));

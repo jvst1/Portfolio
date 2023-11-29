@@ -2,7 +2,7 @@
 
 namespace Portfolio.Infrastructure.Exceptions
 {
-    public class UserNotFoundException : PortfolioException
+    public class UserNotFoundException : Exception
     {
         public UserNotFoundException()
         {
