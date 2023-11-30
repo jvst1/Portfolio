@@ -9,13 +9,11 @@ import VueTheMask, { TheMask } from "vue-the-mask";
 // Components
 import "./components";
 
-// Plugins
-import "./plugins/vuetify";
-
 import api from "@/api";
 import { store } from "./store";
 import globals from "@/plugins/globals";
 import axios from "axios";
+import vuetify from "./plugins/vuetify";
 import VueLodash from "vue-lodash";
 import lodash from "lodash";
 import Notifications from "vue-notification";

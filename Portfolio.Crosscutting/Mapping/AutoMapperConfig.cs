@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using IdentityServer4.EntityFramework.Entities;
 using Portfolio.Domain.Entities.Cad;
+using Portfolio.Domain.Entities.Order;
 using Portfolio.Domain.Messaging.Cad;
 using Portfolio.Domain.Messaging.Identity;
+using Portfolio.Domain.Messaging.Order;
 using System;
 
 namespace Portfolio.Crosscutting.Mapping
@@ -23,13 +25,28 @@ namespace Portfolio.Crosscutting.Mapping
                 cfg.CreateMap<UsuarioEndereco, UsuarioEnderecoPutRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<UsuarioEndereco, UsuarioEnderecoResponse>(MemberList.None).ReverseMap();
 
+                #endregion
+
+                #region Categoria
+
                 cfg.CreateMap<Categoria, CategoriaPostRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Categoria, CategoriaPutRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Categoria, CategoriaResponse>(MemberList.None).ReverseMap();
 
+                #endregion
+
+                #region Cardapio
+
                 cfg.CreateMap<Cardapio, CardapioPostRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Cardapio, CardapioPutRequest>(MemberList.None).ReverseMap();
                 cfg.CreateMap<Cardapio, CardapioResponse>(MemberList.None).ReverseMap();
+
+                #endregion
+
+                #region Pedido
+
+                cfg.CreateMap<Pedido, PedidoResponse>(MemberList.None).ReverseMap();
+
                 #endregion
 
                 #region Identity

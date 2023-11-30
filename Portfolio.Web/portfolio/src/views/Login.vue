@@ -1,8 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-main>
-      <v-container class="fill-height pa-0" fluid
-        :style="`background-image: url('${publicUrl}assets/img/loginbg.jpg');background-position: center center; background-size: cover;`">
+      <v-container class="fill-height pa-0" fluid>
         <v-col offset-sm="1" sm="10">
           <v-row align="center" justify="center">
             <v-col cols="12" sm="8" md="4">

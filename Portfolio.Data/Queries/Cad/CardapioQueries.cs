@@ -71,5 +71,22 @@ namespace Portfolio.Data.Queries.Cad
                 return sql + GetWhere();
             }
         }
+
+        public class GetOfertas : QueryBase<Cardapio>
+        {
+            public GetOfertas()
+            {
+            }
+
+            public override string GetSql()
+            {
+                var sql = @"SELECT * FROM cad.Cardapio (NOLOCK)";
+
+                AddCondition("AplicarDesconto = 1");
+                AddOrderBy("NEWID()");
+
+                return sql + GetWhere() + GetOrderBy();
+            }
+        }
     }
 }

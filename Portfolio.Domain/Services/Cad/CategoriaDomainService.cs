@@ -14,7 +14,7 @@ namespace Portfolio.Domain.Services.Cad
 
         public CategoriaDomainService(IOptions<AppSettings> appSettings,
                                     ILogger<CategoriaDomainService> logger,
-                                    ICategoriaRepository usuarioEnderecoRepository) : base(usuarioEnderecoRepository)
+                                    ICategoriaRepository crudRepository) : base(crudRepository)
         {
             _appSettings = appSettings.Value;
             _logger = logger;

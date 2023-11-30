@@ -1,14 +1,28 @@
 <template>
     <div :class="`deal-card deal-card__bg-${variant}`">
-        <div class="deal-card__image">
-            <img :src="image" alt="cardimage" />
-        </div>
+        <v-row no-gutters>
+            <v-col cols="12" md="6">
+                <v-img :src="image" class="deal-card__image" aspect-ratio="1.5">
+                    <template v-slot:placeholder>
+                        <v-row class="fill-height ma-0" align="center" justify="center">
+                            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                        </v-row>
+                    </template>
+                </v-img>
+            </v-col>
 
-        <div class="deal-card__content">
-            <div class="deal-card__title">{{ title }}</div>
-            <div class="deal-card__offer">{{ offer }}</div>
-            <div class="deal-card__tag">{{ tag }}</div>
-        </div>
+            <v-col cols="12" md="6">
+                <v-container class="deal-card__content">
+                    <v-row align="center" justify="center">
+                        <v-col class="text-center">
+                            <span class="deal-card__title title">{{ title }}</span>
+                            <div class="deal-card__offer headline">{{ offer }}% OFF</div>
+                            <div class="deal-card__tag subtitle-1">{{ tag }}</div>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-col>
+        </v-row>
     </div>
 </template>
   
@@ -25,12 +39,12 @@ export default {
             default: "",
         },
         offer: {
-            type: String,
-            default: "",
+            type: Number,
+            default: 0,
         },
         tag: {
             type: String,
-            default: "",
+            default: "Deconto Imperdível!",
         },
         image: {
             type: String,
@@ -39,7 +53,7 @@ export default {
     },
 };
 </script>
-  
+
 <style lang="scss">
 .deal-card {
     display: flex;
@@ -102,12 +116,9 @@ export default {
         font-size: 15px;
         line-height: 20px;
         letter-spacing: 0.1px;
-        color:  var(--grey);
+        color: var(--grey);
     }
 }
-
-
-
 
 @media screen and (max-width: 768px) {
     .deal-card {

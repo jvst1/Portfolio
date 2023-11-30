@@ -31,6 +31,11 @@
           </v-col>
         </v-row>
         <v-row>
+          <v-col cols="12">
+            <input-phone label="Foto de perfil" v-model="model.imageUrl" />
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col xs="12" cols="12">
             <input-multiselect label="Tipo perfil" v-model="model.tipoPerfil" :options="arrayPerfil" :text="'name'" />
           </v-col>

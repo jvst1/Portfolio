@@ -1,69 +1,69 @@
 <template>
-  <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4"
-    :style="`background-image: url('${publicUrl}assets/img/loginbg.jpg');`">
-    <div class="ui-bg-overlay bg-dark opacity-25"></div>
+  <v-app id="inspire">
+    <v-main>
+      <v-container class="fill-height pa-0" fluid>
+        <v-col offset-sm="1" sm="10">
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="8" md="4">
 
-    <div class="authentication-inner py-5">
-      <v-card no-body>
-        <div class="p-4 p-sm-5">
-          <!-- Logo -->
-          <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
-            <img src="@/assets/logo.png" width="100" alt="logo"/>
-          </div>
-          <!-- / Logo -->
+              <v-card class="elevation-12">
+                <v-col class="d-flex justify-center">
+                  <v-avatar size="100" tile><v-img src="@/assets/logo.png" width="100%" contain /></v-avatar>
+                </v-col>
 
-          <h5 class="text-center text-muted font-weight-normal mb-4">Portfolio - Cadastrar Senha</h5>
+                <v-card-title class="d-flex justify-center pt-0">
+                  <h5 class="text--disabled font-weight-light">Cadastrar Senha</h5>
+                </v-card-title>
 
-          <!-- Form -->
-          <form v-show="!msgResetSuccess && !msgResetError && validToken" @submit.prevent="recuperarSenha">
-            <v-col label="E-mail">
-              <input-text v-model="model.Login" :disabled="true" />
+                <v-card-text>
+                  <v-form v-show="!msgResetSuccess && !msgResetError && validToken" @submit.prevent="recuperarSenha">
+                    <v-col>
+                      <input-text label="E-mail" v-model="model.Login" :disabled="true" />
+                    </v-col>
+                    <v-col>
+                      <input-text label="Nova Senha" type="password" v-model="model.NovaSenha" :disabled="!model.Login" />
+                    </v-col>
+                    <v-col>
+                      <input-text label="Confirmar Senha" type="password" v-model="confirmacaoSenha"
+                        :disabled="!model.Login" />
+                    </v-col>
+                    <v-col v-show="model.NovaSenha && confirmacaoSenha && (model.NovaSenha != confirmacaoSenha)">
+                      <v-alert type="error" text>
+                        Senhas não correspondem
+                      </v-alert>
+                    </v-col>
+                    <v-col class="pt-0 pb-10">
+                      <v-btn type="submit" color="primary"
+                        :disabled="!model.NovaSenha || (model.NovaSenha != confirmacaoSenha)">Confirmar Senha</v-btn>
+                      <router-link to="/" class="float-right font-weight-medium caption text-decoration-none">Voltar ao
+                        login</router-link>
+                    </v-col>
+                  </v-form>
+
+                  <v-alert v-show="msgResetError" type="error" class="mt-3" text icon="error">
+                    {{ msgResetError }}
+                    <router-link to="/lembrar" class="d-block small">Recuperação de senha</router-link>
+                  </v-alert>
+
+                  <v-alert v-show="msgResetSuccess" type="success" class="mt-3" text icon="success">
+                    {{ msgResetSuccess }}
+                    <router-link to="/" class="d-block small">Voltar ao login</router-link>
+                  </v-alert>
+                </v-card-text>
+              </v-card>
             </v-col>
-            <v-col>
-              <input-text label="Nova Senha" type="password" v-model="model.NovaSenha" :disabled="!model.Login" />
-            </v-col>
-            <v-col>
-              <input-text label="Confirmar Senha" type="password" v-model="confirmacaoSenha" :disabled="!model.Login" />
-            </v-col>
-            <p v-show="model.NovaSenha && confirmacaoSenha && (model.NovaSenha != confirmacaoSenha)" style="color:red">
-              Senhas não correspondem</p>
-
-            <v-col>
-              <div slot="label" class="d-flex justify-content-between align-items-end">
-                <div class="d-flex align-content-center">
-                  <v-btn type="submit" variant="primary"
-                    :disabled="!model.NovaSenha || (model.NovaSenha != confirmacaoSenha)">Confirmar Senha</v-btn>
-                </div>
-                <router-link to="/" class="d-block small">Voltar ao login</router-link>
-              </div>
-            </v-col>
-          </form>
-
-          <div v-show="msgResetError">
-            <div class="alert alert-danger">{{ msgResetError }}</div>
-            <br />
-            <router-link to="/lembrar" class="d-block small">Recuperação de senha</router-link>
-          </div>
-
-          <div v-show="msgResetSuccess">
-            <div class="alert alert-success">{{ msgResetSuccess }}</div>
-            <br />
-            <router-link to="/" class="d-block small">Voltar ao login</router-link>
-          </div>
-        </div>
-      </v-card>
-    </div>
-  </div>
+          </v-row>
+        </v-col>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
-
-<!--<style src="@/vendor/styles/pages/authentication.scss" lang="scss"></style>
-<style src="@/vendor/libs/spinkit/spinkit.scss" lang="scss"></style>-->
 
 <script>
 export default {
   name: 'recuperar',
   metaInfo: {
-    title: 'Portfolio - Recuperação'
+    title: 'Portfolio - Recuperação de senha'
   },
   data: () => ({
     model: { NovaSenha: '', Login: '', Token: '', CodigoUsuario: '' },

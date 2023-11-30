@@ -17,5 +17,13 @@
         #endregion
 
         public string WebUrl { get; set; }
+        public AWS Ses { get; set; }
+    }
+
+    public class AWS
+    {
+        public string RegionEndpoint { get; set; }
+        public string AccessKeyId { get; set; }
+        public string SecretAccessKey { get; set; }
     }
 }

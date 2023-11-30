@@ -62,5 +62,13 @@ namespace Portfolio.Api.Controllers.Cad
             _cardapioApplicationService.Delete(id, codigoComerciante);
             return Ok();
         }
+
+        [HttpGet("Oferta")]
+        [Authorize()]
+        public ActionResult<CardapioResponse> GetOferta()
+        {
+            var response = _cardapioApplicationService.GetOfertas();
+            return Ok(response);
+        }
     }
 }

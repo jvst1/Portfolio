@@ -21,6 +21,7 @@ namespace Portfolio.Domain.Entities.Cad
 
         [Truncate(14)]
         public string DocumentoFederal { get; set; }
+        public string ImageUrl { get; set; }
 
         [Truncate(100)]
         public string TelefoneCelular { get; set; }

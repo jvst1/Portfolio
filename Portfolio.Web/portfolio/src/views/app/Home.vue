@@ -3,7 +3,7 @@
     <div class="container">
       <div class="deals__list">
         <card-oferta v-for="(dealCard, index) in dealList" :key="`dealCard__${index}`" :variant="dealCard.variant"
-          :title="dealCard.title" :offer="dealCard.offer" :tag="dealCard.tag" :image="dealCard.image" />
+          :title="dealCard.nome" :offer="dealCard.valorDescontoPercentual" :image="dealCard.imageUrl" />
       </div>
 
       <div class="category__list center" v-if="!isLoading">
@@ -50,20 +50,14 @@ export default {
         })
       })
 
-      this.dealList = [
-        {
-          title: "teste",
-          offer: "40% OFF",
-          tag: "tag123",
-          image: "https://food-delivery-app-front.netlify.app/img/deal_icecream.ea4a65e9.png"
-        },
-        {
-          title: "teste",
-          offer: "40% OFF",
-          tag: "tag123",
-          image: "https://food-delivery-app-front.netlify.app/img/deal_icecream.ea4a65e9.png"
-        },
-      ];
+
+      this.$api.Cardapio.GetOfertas().then((response) => {
+        this.dealList = [];
+        response.map(item => {
+          console.log(item)
+          this.dealList.push(item);
+        })
+      })
       this.isLoading = false
     },
     clickCategory(categoryObject) {

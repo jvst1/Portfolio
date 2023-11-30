@@ -28,6 +28,12 @@ namespace Portfolio.Infrastructure
             return sbReturn.ToString();
         }
 
+        public static string FormatarDecimal(decimal number)
+        {
+            CultureInfo ptBrCulture = new CultureInfo("pt-BR");
+            return number.ToString("#,##0.00", ptBrCulture);
+        }
+
         public static string DeixaNumeros(string texto)
         {
             return string.IsNullOrWhiteSpace(texto) ? string.Empty : string.Join("", Regex.Split(texto, @"[^\d]", RegexOptions.None, new TimeSpan(0, 0, 30)));

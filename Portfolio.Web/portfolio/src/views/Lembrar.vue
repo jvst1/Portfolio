@@ -1,50 +1,47 @@
 <template>
-  <div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4"
-    :style="`background-image: url('${publicUrl}assets/img/loginbg.jpg');`">
-    <div class="ui-bg-overlay bg-dark opacity-25"></div>
+  <v-app id="inspire">
+    <v-main>
+      <v-container class="fill-height pa-0" fluid>
+        <v-col offset-sm="1" sm="10">
+          <v-row align="center" justify="center">
+            <v-col cols="12" sm="8" md="4">
 
-    <div class="authentication-inner py-5">
-      <v-card no-body>
-        <div class="p-4 p-sm-5">
-          <!-- Logo -->
-          <div class="d-flex justify-content-center align-items-center pb-2 mb-4">
-            <img src="@/assets/logo.png" width="100" alt="logo" />
-          </div>
-          <!-- / Logo -->
+              <v-card class="elevation-12">
+                <v-col class="d-flex justify-center">
+                  <v-avatar size="100" tile><v-img src="@/assets/logo.png" width="100%" contain /></v-avatar>
+                </v-col>
 
-          <h5 class="text-center text-muted font-weight-normal mb-4">Portfolio - Recuperação de senha</h5>
+                <v-card-title class="d-flex justify-center pt-0">
+                  <h5 class="text--disabled font-weight-light">Recuperação de Senha</h5>
+                </v-card-title>
 
-          <!-- Form -->
-          <form v-show="!msgRecuperacaoSuccess" @submit.prevent="recuperarSenha">
-            <v-col label="E-mail">
-              <input-text v-model="model.Login" @keypress="clearMsgs" />
+                <v-card-text>
+                  <v-form v-show="!msgRecuperacaoSuccess" @submit.prevent="recuperarSenha">
+                    <v-col>
+                      <input-text label="E-mail" v-model="model.Login" autofocus placeholder=" " @keypress="clearMsgs"/>
+                    </v-col>
+                    <v-col class="pt-0 pb-10">
+                      <v-btn type="submit" :disabled="!model.Login" color="primary">Enviar Recuperação de Senha</v-btn>
+                      <router-link to="/" class="float-right font-weight-medium caption text-decoration-none">Voltar ao login</router-link>
+                    </v-col>
+                  </v-form>
+
+                  <v-alert v-show="msgRecuperacaoError" type="error" class="mt-3" text icon="error">
+                    {{ msgRecuperacaoError }}
+                  </v-alert>
+
+                  <v-alert v-show="msgRecuperacaoSuccess" type="success" class="mt-3" text icon="success">
+                    {{ msgRecuperacaoSuccess }}
+                    <router-link to="/" class="d-block small">Voltar ao login</router-link>
+                  </v-alert>
+                </v-card-text>
+              </v-card>
             </v-col>
-            <v-col>
-              <div slot="label" class="d-flex justify-content-between align-items-start">
-                <div class="d-flex align-content-center">
-                  <v-btn type="submit" variant="primary" :disabled="!model.Login">Enviar Recuperação de Senha</v-btn>
-                </div>
-                <router-link to="/" class="d-block small">Voltar ao login</router-link>
-              </div>
-            </v-col>
-          </form>
-
-          <div v-show="msgRecuperacaoError">
-            <div class="alert alert-danger">{{ msgRecuperacaoError }}</div>
-            <br />
-          </div>
-
-          <div v-show="msgRecuperacaoSuccess">
-            <div class="alert alert-success">{{ msgRecuperacaoSuccess }}</div>
-            <br />
-            <router-link to="/" class="d-block small">Voltar ao login</router-link>
-          </div>
-
-          <!-- / Form -->
-        </div>
-      </v-card>
-    </div>
-  </div>
+          </v-row>
+        </v-col>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <!--<style src="@/vendor/styles/pages/authentication.scss" lang="scss"></style>

@@ -4,6 +4,7 @@ using Portfolio.Data.DbMappings.Base;
 using Portfolio.Domain.Base.Interfaces.Data;
 using Portfolio.Domain.Entities.Cad;
 using Portfolio.Domain.Entities.Core;
+using Portfolio.Domain.Entities.Order;
 using Portfolio.Infrastructure.Enums;
 
 namespace Portfolio.Data.DbMappings
@@ -80,6 +81,32 @@ namespace Portfolio.Data.DbMappings
         public void Configure(EntityTypeBuilder<EnvioEmailAnexo> builder)
         {
             DefaultMappings.Ambos<EnvioEmailAnexo, int>(Schema)(builder);
+        }
+    }
+
+    #endregion
+
+    #region Schema order
+
+    public class PedidoMapping : DbMappingBase<Pedido>, IEfDbMapping<Pedido>
+    {
+        public override string DbService => Identificadores.Portfolio;
+        public override string Schema => "order";
+
+        public void Configure(EntityTypeBuilder<Pedido> builder)
+        {
+            DefaultMappings.Ambos<Pedido, long>(Schema)(builder);
+        }
+    }
+
+    public class PedidoProdutoMapping : DbMappingBase<PedidoProduto>, IEfDbMapping<PedidoProduto>
+    {
+        public override string DbService => Identificadores.Portfolio;
+        public override string Schema => "order";
+
+        public void Configure(EntityTypeBuilder<PedidoProduto> builder)
+        {
+            DefaultMappings.Ambos<PedidoProduto, long>(Schema)(builder);
         }
     }
 
