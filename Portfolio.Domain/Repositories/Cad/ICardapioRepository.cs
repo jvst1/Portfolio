@@ -8,5 +8,6 @@ namespace Portfolio.Domain.Repositories.Cad
         List<Cardapio> GetAll(string search, Guid codigoComerciante);
         List<Cardapio> GetAllItensFromComerciante(Guid codigoComerciante);
         Cardapio GetItemByIdFromComerciante(Guid id, Guid codigoComerciante);
+        List<Cardapio> GetOfertas();
     }
 }

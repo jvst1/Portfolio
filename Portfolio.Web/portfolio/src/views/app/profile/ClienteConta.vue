@@ -12,6 +12,8 @@
                     :maxlength="100" required />
                 <input-phone label="Número de telefone" placeholder="Informe o número de telefone (UF) X XXXX-XXXX"
                     v-model="formData.telefoneCelular" required />
+                <input-text label="Foto de perfil" placeholder="Informe o URL da sua foto de perfil"
+                    v-model="formData.imageUrl" />
             </v-card-text>
             <v-btn text color="primary" @click="save">Salvar alterações</v-btn>
             <v-btn color="error" @click="logout">Log out</v-btn>

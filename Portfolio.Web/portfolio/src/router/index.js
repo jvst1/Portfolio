@@ -20,8 +20,8 @@ const localApp = new Vue({});
 
 function route(paths) {
   var list = [];
-  for (var i of paths) {
-    list.push(getPath(paths[i]));
+  for (var path of paths) {
+    list.push(getPath(path));
   }
   list.push({ path: "*", redirect: "/" });
   return list;
@@ -64,35 +64,31 @@ function view(path) {
 function getChildren(path) {
   if (path.items) {
     var list = [];
-    for (var i of path.items) {
-      var item = path.items[i];
+    for (var item of path.items) {
 
-      if (
-        path.items[i].dir &&
-        path.items[i].items &&
-        path.items[i].items.length > 0
-      ) {
-        path.items[i].items.forEach(function (p) {
-          return (p.parentDir = path.items[i].dir);
+      if (item.dir && item.items && item.items.length > 0) {
+        item.items.forEach(function (p) {
+          p.parentDir = item.dir;
         });
       }
-      if (path.items[i].parentDir) {
-        path.items[i].dir = path.dir + path.items[i].parentDir;
+
+      if (item.parentDir) {
+        item.dir = path.dir + item.parentDir;
       } else {
-        path.items[i].dir = path.dir;
+        item.dir = path.dir;
       }
 
-      path.items[i].path = path.path + path.items[i].path;
-
+      item.path = path.path + item.path;
       item.breadcrumbs = [];
+
       if (path.breadcrumbs) {
         path.breadcrumbs.forEach((p) => item.breadcrumbs.push(p));
       } else {
         item.breadcrumbs.push({ text: path.title, icon: path.icon });
       }
-      item.breadcrumbs.push({ text: item.title, icon: item.icon });
 
-      list.push(getPath(path.items[i]));
+      item.breadcrumbs.push({ text: item.title, icon: item.icon });
+      list.push(getPath(item));
     }
     return list;
   }

@@ -60,5 +60,12 @@ namespace Portfolio.Application.Services.Cad
 
             _cardapioDomainService.Remove(id);
         }
+
+        public List<CardapioResponse> GetOfertas()
+        {
+            var cardapios = _cardapioDomainService.GetOfertas();
+
+            return _mapper.ConvertFromDomain<CardapioResponse>(cardapios);
+        }
     }
 }

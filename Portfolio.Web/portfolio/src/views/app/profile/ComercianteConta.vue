@@ -12,6 +12,8 @@
                     v-model="formData.email" :maxlength="100" :disabled="true" required />
                 <input-text label="Apelido" placeholder="Informe um apelido para o estabelecimento comerical"
                     v-model="formData.identificador" :maxlength="100" required />
+                <input-text label="Foto de perfil" placeholder="Informe o URL da sua foto de perfil"
+                    v-model="formData.imageUrl" required />
                 <input-phone label="Número de telefone"
                     placeholder="Informe o número de telefone do estabelecimento comercial (UF) X XXXX-XXXX"
                     v-model="formData.telefoneCelular" required />
@@ -42,6 +44,7 @@ export default {
                 email: "",
                 identificador: "",
                 telefoneCelular: "",
+                imageUrl: "",
                 tempoEntrega: "",
                 valorMinimoPedido: "",
                 tags: null,

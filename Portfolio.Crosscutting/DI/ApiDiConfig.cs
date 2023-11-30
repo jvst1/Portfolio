@@ -4,18 +4,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Portfolio.Application.Services;
 using Portfolio.Application.Services.Cad;
 using Portfolio.Application.Services.Identity;
+using Portfolio.Application.Services.Order;
 using Portfolio.Crosscutting.Mapping;
 using Portfolio.Data;
-using Portfolio.Data.Context;
 using Portfolio.Data.Context.DbServices;
 using Portfolio.Data.Repositories.Cad;
 using Portfolio.Data.Repositories.Core;
+using Portfolio.Data.Repositories.Order;
 using Portfolio.Data.Security.Factory;
 using Portfolio.Domain.Base.Interfaces.Data;
 using Portfolio.Domain.Repositories.Cad;
 using Portfolio.Domain.Repositories.Core;
+using Portfolio.Domain.Repositories.Order;
 using Portfolio.Domain.Services.Cad;
 using Portfolio.Domain.Services.Core;
+using Portfolio.Domain.Services.Order;
 using Portfolio.Infrastructure.Helpers;
 using Portfolio.Infrastructure.Security;
 
@@ -57,6 +60,8 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<IEmailAnexoRepository, EmailAnexoRepository>();
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
             services.AddTransient<ICardapioRepository, CardapioRepository>();
+            services.AddTransient<IPedidoRepository, PedidoRepository>();
+            services.AddTransient<IPedidoProdutoRepository, PedidoProdutoRepository>();
         }
 
         private static void ConfigureServices(IServiceCollection services)
@@ -73,6 +78,7 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<EnvioEmailDomainService>();
             services.AddTransient<CategoriaDomainService>();
             services.AddTransient<CardapioDomainService>();
+            services.AddTransient<PedidoDomainService>();
         }
 
         private static void ConfigureApplicationServices(IServiceCollection services)
@@ -88,6 +94,7 @@ namespace Portfolio.Crosscutting.DI
             services.AddTransient<ClientSecretsApplicationService>();
             services.AddTransient<CategoriaApplicationService>();
             services.AddTransient<CardapioApplicationService>();
+            services.AddTransient<PedidoApplicationService>();
         }
 
         private static void ConfigureTransientBase(IServiceCollection services)

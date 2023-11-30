@@ -10,6 +10,7 @@ namespace Portfolio.Domain.Messaging.Cad
         public string Identificador { get; set; }
         public string Email { get; set; }
         public string TelefoneCelular { get; set; }
+        public string ImageUrl { get; set; }
         public TipoPerfilUsuario? TipoPerfil { get; set; }
         public string ClientIdIdentityServer { get; set; }
     }

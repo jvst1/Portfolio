@@ -11,6 +11,7 @@ namespace Portfolio.Domain.Messaging.Cad
         public string Identificador { get; set; }
         public string Email { get; set; }
         public string TelefoneCelular { get; set; }
+        public string ImageUrl { get; set; }
         public string TempoEntrega { get; set; }
         public decimal ValorMinimoPedido { get; set; }
         public string Tags { get; set; }

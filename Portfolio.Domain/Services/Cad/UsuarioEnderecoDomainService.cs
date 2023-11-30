@@ -14,7 +14,7 @@ namespace Portfolio.Domain.Services.Cad
 
         public UsuarioEnderecoDomainService(IOptions<AppSettings> appSettings,
                                     ILogger<UsuarioEnderecoDomainService> logger,
-                                    IUsuarioEnderecoRepository usuarioEnderecoRepository) : base(usuarioEnderecoRepository)
+                                    IUsuarioEnderecoRepository crudRepository) : base(crudRepository)
         {
             _appSettings = appSettings.Value;
             _logger = logger;

@@ -14,7 +14,7 @@ namespace Portfolio.Domain.Services.Cad
 
         public CardapioDomainService(IOptions<AppSettings> appSettings,
                                     ILogger<CardapioDomainService> logger,
-                                    ICardapioRepository usuarioEnderecoRepository) : base(usuarioEnderecoRepository)
+                                    ICardapioRepository crudRepository) : base(crudRepository)
         {
             _appSettings = appSettings.Value;
             _logger = logger;
@@ -33,6 +33,11 @@ namespace Portfolio.Domain.Services.Cad
         public Cardapio GetItemByIdFromComerciante(Guid id, Guid codigoComerciante)
         {
             return CrudRepository.GetItemByIdFromComerciante(id, codigoComerciante);
+        }
+
+        public List<Cardapio> GetOfertas()
+        {
+            return CrudRepository.GetOfertas();
         }
     }
 }

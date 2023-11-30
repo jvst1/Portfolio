@@ -27,5 +27,10 @@ namespace Portfolio.Data.Repositories.Cad
         {
             return Context.RawQuery(new CardapioQueries.GetItemByIdFromComerciante(id, codigoComerciante)).FirstOrDefault();
         }
+
+        public List<Cardapio> GetOfertas()
+        {
+            return Context.RawQuery(new CardapioQueries.GetOfertas()).ToList();
+        }
     }
 }

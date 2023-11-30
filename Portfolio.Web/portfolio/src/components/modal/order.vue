@@ -13,7 +13,7 @@
                     :offerPrice="product.valorDescontoFixo" :offer="product.aplicarDesconto" />
             </template>
         </modal-form>
-        <modal-cart ref="carrinho"></modal-cart>
+        <modal-cart ref="carrinho" :codigoComerciante="codigoComerciante"></modal-cart>
     </div>
 </template>
 

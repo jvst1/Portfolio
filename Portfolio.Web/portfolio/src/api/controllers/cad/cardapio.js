@@ -11,6 +11,9 @@ export default Object.assign({}, util.GetCrud(controller, []), {
     GetAll: function (codigoUsuario, dto) {
         return util.Axios.GetAll(`${controller}/${codigoUsuario}/Itens`, dto);
     },
+    GetOfertas: function () {
+        return util.Axios.GetAll(`${controller}/Oferta`, {});
+    },
     Persist: function (codigoUsuario, dto, key) {
         if (!dto)
             dto = {};
