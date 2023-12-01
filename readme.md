@@ -72,19 +72,22 @@ Os testes de API foram uma parte crucial do desenvolvimento:
 - Os testes podem ser feitos de maneira simples, encadeados ou simulando o browser:
   
 - Exemplo de teste individual:
-- ![Detalhes de execução teste de API individual com datadog](./Portfolio.Documentos/Datadog/SM&CT_2.png)
+![Detalhes de execução teste de API individual com datadog](./Portfolio.Documentos/Datadog/SM&CT_2.png)
   
-- Exemplo de teste encadeado:!
-- ![Detalhes de execução teste de API encadeado com datadog](./Portfolio.Documentos/Datadog/SM&CT_3.png)
+- Exemplo de teste encadeado:
+![Detalhes de execução teste de API encadeado com datadog](./Portfolio.Documentos/Datadog/SM&CT_3.png)
 
 - Exemplo de teste E2E no navegador:
-- ![Detalhes de execução teste E2E com datadog](./Portfolio.Documentos/Datadog/SM&CT_4.png)
+![Detalhes de execução teste E2E com datadog](./Portfolio.Documentos/Datadog/SM&CT_4.png)
   
 - Foi utilizado o datadog RUM (Real User Monitoring) para acompanhar o desempenho da aplicação e mapear as sessões de usuários. 
 ![Detalhes de performance do RUM](./Portfolio.Documentos/Datadog/RUM_1.png)
 ![Detalhes estatísticas da aplicação](./Portfolio.Documentos/Datadog/RUM_2.png)
 ![Detalhes de sessão do usuário](./Portfolio.Documentos/Datadog/RUM_3.png)
-  
+
+- Foi implementado o Sonarcloud para análise de código: [link para acesso](https://sonarcloud.io/summary/overall?id=jvst1_Portfolio)
+![image](https://github.com/jvst1/Portfolio/assets/61890677/65c3ac76-e36d-46e1-82a3-77ff14c92490)
+
 #### Implantação e Entrega Final
 A última fase envolveu a configuração do ambiente de produção e a entrega final do projeto, que incluiu a documentação completa, o código-fonte e a garantia dos processos hospedados na AWS, Github e Vercel.
 
