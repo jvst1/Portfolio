@@ -564,7 +564,7 @@ Este projeto utiliza diversas tecnologias e serviços. Abaixo estão as instruç
    
 2. **Navegue até o diretório do backend**
     ```bash
-    cd Portfolio/backend
+    cd Portfolio.Api
     ```
 
 3. **Restaure os pacotes NuGet**
