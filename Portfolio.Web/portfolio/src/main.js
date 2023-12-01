@@ -19,6 +19,22 @@ import lodash from "lodash";
 import Notifications from "vue-notification";
 import VueFileAgent from "vue-file-agent";
 import BlockUI from "vue-blockui";
+import { datadogRum } from '@datadog/browser-rum';
+
+datadogRum.init({
+    applicationId: '47b705d4-c0c2-447d-b462-6424b7db29a3',
+    clientToken: 'pubd881b1e6ae8e789618c1e2046ded7e9b',
+    site: 'datadoghq.com',
+    service: 'portfolioweb',
+    env: 'production',
+    version: '1.0.0', 
+    sessionSampleRate: 100,
+    sessionReplaySampleRate: 20,
+    trackUserInteractions: true,
+    trackResources: true,
+    trackLongTasks: true,
+    defaultPrivacyLevel: 'mask-user-input',
+});
 
 Vue.use(VueTheMask);
 Vue.component(TheMask);

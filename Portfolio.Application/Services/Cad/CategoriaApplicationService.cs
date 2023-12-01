@@ -33,17 +33,18 @@ namespace Portfolio.Application.Services.Cad
             return _mapper.ConvertFromDomain<CategoriaResponse>(entity);
         }
 
-        public void Put(Guid id, CategoriaPutRequest request)
+        public CategoriaResponse Put(Guid id, CategoriaPutRequest request)
         {
             var entity = _mapper.ConvertToDomain(request);
             _categoriaDomainService.Update(id, entity);
+            return _mapper.ConvertFromDomain<CategoriaResponse>(entity);
         }
 
-        public Categoria Post(CategoriaPostRequest request)
+        public CategoriaResponse Post(CategoriaPostRequest request)
         {
-            var sender = _mapper.ConvertToDomain(request);
-            _categoriaDomainService.Insert(sender);
-            return sender;
+            var entity = _mapper.ConvertToDomain(request);
+            _categoriaDomainService.Insert(entity);
+            return _mapper.ConvertFromDomain<CategoriaResponse>(entity);
         }
 
         public void Delete(Guid id)

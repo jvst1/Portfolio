@@ -18,8 +18,21 @@ namespace Portfolio.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(LoginResponse))]
         public ActionResult<LoginResponse> Login(LoginRequest request)
         {
-            var result = _authenticationApplicationService.Autenticar(request);
-            return Ok(result);
+            try
+            {
+                if (request is null)
+                    return BadRequest("A requisição não pode ser nula");
+
+                if (request != null && (request.Login == null || request.Senha == null))
+                    return BadRequest("É obrigatório informar login e senha");
+
+                var result = _authenticationApplicationService.Autenticar(request);
+                return Ok(result);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
         }
 
         [HttpDelete("Logout")]

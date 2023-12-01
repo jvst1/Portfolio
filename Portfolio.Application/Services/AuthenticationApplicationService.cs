@@ -1,4 +1,5 @@
-﻿using Portfolio.Domain.Entities.Cad;
+﻿using Microsoft.AspNetCore.Http;
+using Portfolio.Domain.Entities.Cad;
 using Portfolio.Domain.Messaging.Cad;
 using Portfolio.Domain.Services.Cad;
 using Portfolio.Infrastructure.Enums;
@@ -22,10 +23,10 @@ namespace Portfolio.Application.Services
             var user = _usuarioDomainService.GetFirstByEmail(request.Login);
 
             if (user == null || !Security.ValidatePassword(request.Senha, user.SenhaAcesso))
-                throw new InvalidDataException("Usuário ou senha incorretos.");
+                throw new UnauthorizedAccessException("Usuário ou senha incorretos.");
 
             if (user.Situacao == SituacaoUsuario.Inativo)
-                throw new InvalidDataException("Usuário não autorizado.");
+                throw new UnauthorizedAccessException("Usuário não autorizado.");
 
             return GeraToken(user);
         }

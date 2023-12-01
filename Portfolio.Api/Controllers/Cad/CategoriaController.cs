@@ -17,14 +17,14 @@ namespace Portfolio.Api.Controllers.Cad
         }
 
         [HttpGet]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Cliente) + "," + nameof(TipoPerfilUsuario.Comerciante))]
+        [Authorize()]
         public ActionResult<List<CategoriaResponse>> GetAll(Request request)
         {
             return _categoriaApplicationService.GetAll(request);
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador) + "," + nameof(TipoPerfilUsuario.Cliente) + "," + nameof(TipoPerfilUsuario.Comerciante))]
+        [Authorize()]
         public ActionResult<CategoriaResponse> GetById(Guid id)
         {
             return _categoriaApplicationService.GetById(id);
@@ -32,7 +32,7 @@ namespace Portfolio.Api.Controllers.Cad
 
         [HttpPut("{id}")]
         [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
-        public IActionResult Put(Guid id, CategoriaPutRequest sender)
+        public ActionResult<CategoriaResponse> Put(Guid id, CategoriaPutRequest sender)
         {
             if (id != sender.Codigo)
                 return BadRequest();
@@ -43,7 +43,7 @@ namespace Portfolio.Api.Controllers.Cad
 
         [HttpPost]
         [Authorize(Roles = nameof(TipoPerfilUsuario.Administrador))]
-        public ActionResult<UsuarioResponse> Post(CategoriaPostRequest request)
+        public ActionResult<CategoriaResponse> Post(CategoriaPostRequest request)
         {
             var sender = _categoriaApplicationService.Post(request);
             return CreatedAtAction("Get", new { id = sender.Codigo }, sender);
