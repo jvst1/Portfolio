@@ -91,27 +91,220 @@ Os testes de API foram uma parte crucial do desenvolvimento:
 #### Implantação e Entrega Final
 A última fase envolveu a configuração do ambiente de produção e a entrega final do projeto, que incluiu a documentação completa, o código-fonte e a garantia dos processos hospedados na AWS, Github e Vercel.
 
-### Diagrama de caso de uso:
+### Casos de uso:
+### Para o Usuário Final:
 
-#### Para o usuário final:
-- Navegue pelos produtos: Permite que os usuários finais visualizem uma lista de produtos disponíveis. Recursos como filtragem e classificação podem estar disponíveis para ajudar os clientes a encontrar produtos com mais facilidade.
-- Faça a encomenda: Permite que os usuários finais selecionem produtos, adicionem-nos ao carrinho de compras e façam um pedido. Durante este processo, os clientes podem especificar os detalhes da entrega e confirmar o pedido.
+#### Caso de Uso: Navegar pelos Produtos
+- **Descrição**: O usuário final pode visualizar uma lista de produtos disponíveis no site. Recursos como filtragem e ordenação estão disponíveis para facilitar a busca de produtos específicos.
+- **Atores**: Usuário final.
+- **Pré-condições**: Nenhuma.
+- **Fluxo Principal**:
+  1. O usuário acessa a seção de produtos.
+  2. O usuário utiliza filtros e opções de ordenação, se desejar.
+  3. O sistema exibe os produtos conforme os critérios selecionados.
+- **Pós-condições**: O usuário consegue visualizar os produtos de seu interesse.
+```mermaid
+sequenceDiagram
+    participant U as Usuário Final
+    participant S as Sistema
 
-#### Para o comerciante:
+    Note over U, S: Pré-condições: Nenhuma.
 
-- Navegar pelos produtos: Permite que o comerciante visualize uma lista de produtos disponíveis. Recursos como filtragem e classificação podem estar disponíveis para ajudar o comerciante a encontrar produtos com mais facilidade.
-- Cadastrar novos produtos: Permite que o comerciante cadastre novos produtos para o estabelecimento comercial.
-- Atualizar produtos: Permite que o comerciante atualize os produtos existentes no estabelecimento comercial.
-- Deletar produtos: Permite que o comerciante remova produtos do estabelecimento comercial.
+    U->>S: Acessa a seção de produtos
+    Note over U: Utiliza filtros e<br/>opções de ordenação
+    U->>S: Aplica critérios de seleção
+    S->>U: Exibe produtos<br/>conforme critérios
 
-#### Para o administrador:
+    Note over U, S: Pós-condições: Usuário<br/>visualiza produtos de interesse.
+```
+#### Caso de Uso: Fazer Pedido
+- **Descrição**: O usuário final seleciona produtos, adiciona-os ao carrinho de compras e finaliza o pedido. Pode especificar detalhes de entrega e confirmar o pedido.
+- **Atores**: Usuário final.
+- **Pré-condições**: O usuário deve ter navegado pelos produtos e selecionado itens.
+- **Fluxo Principal**:
+  1. O usuário adiciona produtos ao carrinho.
+  2. O usuário visualiza o carrinho e procede para o checkout.
+  3. O usuário fornece informações de entrega e pagamento.
+  4. O usuário confirma o pedido.
+- **Pós-condições**: O pedido é processado pelo sistema.
+```mermaid
+sequenceDiagram
+    participant U as Usuário Final
+    participant S as Sistema
 
-- Navegar pelos produtos: Permite que o administrador visualize a lista de estabelecimentos comerciais e produtos disponíveis. Recursos como filtragem e classificação podem estar disponíveis para ajudar o administrador a encontrar produtos com mais facilidade.
-- Cadastrar novos usuários: Permite que o administrador cadastre novos usuários com responsábilidades diferentes para o sistema.
-- Atualizar usuários: Permite que o administrador atualize os usuários existentes no sistema.
-- Remover usuários: Permite que o administrador remova usuários do sistema.
-- 
-![Diagrama de caso de uso](Portfolio.Documentos/UseCase.png)
+    Note over U, S: Pré-condições: Usuário selecionou produtos.
+
+    U->>S: Adiciona produtos ao carrinho
+    U->>S: Visualiza o carrinho e procede para o checkout
+    Note over U: Fornece informações de entrega<br/>e pagamento
+    U->>S: Confirma o pedido
+    S->>U: Processa o pedido e exibe<br/>confirmação
+
+    Note over U, S: Pós-condições: Pedido processado pelo sistema
+
+```
+
+### Para o Comerciante:
+
+#### Caso de Uso: Navegar pelos Produtos
+- **Descrição**: Similar ao caso de uso do usuário final, mas focado na gestão dos produtos pelo comerciante.
+- **Atores**: Comerciante.
+- **Pré-condições**: Nenhuma.
+- **Fluxo Principal**:
+  1. O comerciante acessa a seção de produtos.
+  2. O comerciante utiliza filtros e opções de ordenação, se desejar.
+  3. O comerciante exibe os produtos conforme os critérios selecionados.
+- **Pós-condições**: O comerciante consegue visualizar os seus produtos de interesse.
+```mermaid
+sequenceDiagram
+    participant C as Comerciante
+    participant S as Sistema de Gerenciamento de Produtos
+
+    Note over C, S: Pré-condições: Nenhuma.
+
+    C->>S: Acessa a seção de produtos
+    Note over C: Utiliza filtros e opções de ordenação, se desejar
+    C->>S: Aplica critérios de seleção
+    S->>C: Exibe produtos conforme critérios
+
+    Note over C, S: Pós-condições: Comerciante visualiza seus produtos de interesse.
+```
+
+#### Caso de Uso: Cadastrar Novos Produtos
+- **Descrição**: O comerciante pode cadastrar novos produtos no sistema.
+- **Atores**: Comerciante.
+- **Fluxo Principal**:
+  1. O comerciante acessa a interface de configuração de cardápio.
+  2. O comerciante insere as informações do novo produto.
+  3. O sistema valida e registra o novo produto.
+```mermaid
+sequenceDiagram
+    participant C as Comerciante
+    participant S as Sistema
+
+    C->>S: Acessa a interface de configuração de cardápio
+    C->>S: Insere informações do novo produto
+    S->>S: Valida as informações
+    S->>C: Registra o novo produto
+    Note over C,S: O comerciante pode adicionar novos produtos ao sistema.
+
+```
+
+#### Caso de Uso: Atualizar Produtos
+- **Descrição**: O comerciante atualiza informações de produtos existentes.
+- **Atores**: Comerciante.
+- **Fluxo Principal**:
+  1. O comerciante seleciona um produto para atualizar.
+  2. O comerciante modifica as informações necessárias.
+  3. O sistema salva as alterações.
+```mermaid
+sequenceDiagram
+    participant C as Comerciante
+    participant S as Sistema
+
+    C->>S: Seleciona um produto para atualizar
+    C->>S: Modifica as informações necessárias
+    S->>S: Valida as alterações
+    S->>C: Salva as alterações
+    Note over C,S: O comerciante atualiza detalhes de produtos existentes.
+
+```
+
+#### Caso de Uso: Deletar Produtos
+- **Descrição**: O comerciante remove produtos do catálogo.
+- **Atores**: Comerciante.
+- **Fluxo Principal**:
+  1. O comerciante seleciona o produto a ser removido.
+  2. O sistema confirma a ação e remove o produto.
+```mermaid
+sequenceDiagram
+    participant C as Comerciante
+    participant S as Sistema
+
+    C->>S: Seleciona o produto a ser removido
+    S->>S: Confirma a ação
+    S->>C: Remove o produto
+    Note over C,S: O comerciante pode remover produtos do catálogo.
+```
+
+### Para o Administrador:
+
+#### Caso de Uso: Navegar pelos Produtos e Estabelecimentos
+- **Descrição**: Permite ao administrador visualizar todos os produtos e estabelecimentos cadastrados.
+- **Atores**: Administrador.
+- **Fluxo Principal**: Similar ao caso de uso de navegar pelos produtos, mas com acesso a todos os produtos e estabelecimentos.
+```mermaid
+sequenceDiagram
+    participant A as Administrador
+    participant S as Sistema
+
+    Note over A, S: Pré-condições: Nenhuma.
+
+    A->>S: Acessa a seção de produtos de um comerciante
+    Note over A: Utiliza filtros e opções de ordenação, se desejar
+    A->>S: Aplica critérios de seleção
+    S->>A: Exibe produtos conforme critérios
+
+    Note over A, S: Pós-condições: Administrador visualiza produtos de interesse.
+
+```
+
+#### Caso de Uso: Cadastrar Novos Usuários
+- **Descrição**: O administrador pode cadastrar novos usuários no sistema, atribuindo-lhes diferentes responsabilidades.
+- **Atores**: Administrador.
+- **Fluxo Principal**:
+  1. O administrador acessa o painel de administração.
+  2. O administrador insere as informações do novo usuário.
+  3. O sistema valida e cria o novo usuário.
+```mermaid
+sequenceDiagram
+    participant A as Administrador
+    participant S as Sistema
+
+    A->>S: Acessa o painel de administração
+    A->>S: Insere informações do novo usuário
+    S->>S: Valida as informações
+    S->>A: Cria o novo usuário
+    Note over A,S: Novos usuários são adicionados com diferentes responsabilidades.
+
+```
+
+#### Caso de Uso: Atualizar Usuários
+- **Descrição**: O administrador pode atualizar informações de usuários existentes.
+- **Atores**: Administrador.
+- **Fluxo Principal**:
+  1. O administrador escolhe um usuário para atualizar.
+  2. O administrador modifica as informações necessárias.
+  3. O sistema salva as alterações.
+```mermaid
+sequenceDiagram
+    participant A as Administrador
+    participant S as Sistema
+
+    A->>S: Escolhe um usuário para atualizar
+    A->>S: Modifica as informações necessárias
+    S->>S: Valida as alterações
+    S->>A: Salva as alterações
+    Note over A,S: Informações dos usuários existentes são atualizadas.
+
+```
+
+#### Caso de Uso: Remover Usuários
+- **Descrição**: O administrador pode remover usuários do sistema.
+- **Atores**: Administrador.
+- **Fluxo Principal**:
+  1. O administrador seleciona o usuário a ser removido.
+  2. O sistema confirma a ação e remove o usuário.
+```mermaid
+sequenceDiagram
+    participant A as Administrador
+    participant S as Sistema
+
+    A->>S: Seleciona o usuário a ser removido
+    S->>S: Confirma a ação
+    S->>A: Remove o usuário
+    Note over A,S: Usuários são removidos do sistema pelo administrador.
+```
 
 ### Requisitos Funcionais
 
