@@ -444,6 +444,40 @@ graph TD
     style ECSCluster fill:#f9fc,stroke:#333,stroke-width:2px
 ```
 
+### Diagrama C4 - Entidades (Banco de Dados SQL Server)
+
+- **As tabelas representam entidades-chave no sistema de delivery**
+- **Usuario**: Central para todos os tipos de usuários (cliente, comerciante, administrador).
+- **UsuarioEndereco**: Armazena endereços associados aos usuários de tipo cliente.
+- **Cardapio**: Contém produtos oferecidos pelos comerciantes.
+- **Pedido**: Registra pedidos feitos pelos clientes.
+- **PedidoProduto**: Detalha os itens específicos em cada pedido.
+
+Este diagrama fornece uma visão clara das principais entidades de dados do sistema e como elas se relacionam entre si, refletindo a estrutura e as relações do banco de dados.
+
+```mermaid
+graph TD
+    subgraph "Banco de Dados [SQL Server]"
+        Usuario([Usuario<br>cad.Usuario])
+        UsuarioEndereco([UsuarioEndereco<br>cad.UsuarioEndereco])
+        Cardapio([Cardapio<br>cad.Cardapio])
+        Pedido([Pedido<br>order.Pedido])
+        PedidoProduto([PedidoProduto<br>order.PedidoProduto])
+
+        Usuario -->|Endereços do usuário| UsuarioEndereco
+        Usuario -->|Produtos do comerciante| Cardapio
+        Usuario -->|Pedidos do cliente| Pedido
+        Cardapio -->|Produtos no pedido| PedidoProduto
+        Pedido -->|Itens do pedido| PedidoProduto
+    end
+
+    style Usuario fill:#f9f,stroke:#333,stroke-width:2px
+    style UsuarioEndereco fill:#f9f,stroke:#333,stroke-width:2px
+    style Cardapio fill:#f9f,stroke:#333,stroke-width:2px
+    style Pedido fill:#f9f,stroke:#333,stroke-width:2px
+    style PedidoProduto fill:#f9f,stroke:#333,stroke-width:2px
+
+```
 ---
 
 ## Tecnologias utilizadas
