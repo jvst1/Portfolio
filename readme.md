@@ -68,10 +68,12 @@ Os testes de API foram uma parte crucial do desenvolvimento:
 
 - **Teste de API**: Os testes de API foram implementados usando a ferramenta synthetic tests do Datadog.
 - ![Resultado de testes de API com datadog](./Portfolio.Documentos/Datadog/SM&CT_1.png)
-- Os testes podem ser feitos de maneira simples ou encadeados:
+
+- Os testes podem ser feitos de maneira simples, encadeados ou simulando o browser:
+  
 - Exemplo de teste individual:
 - ![Detalhes de execução teste de API individual com datadog](./Portfolio.Documentos/Datadog/SM&CT_2.png)
-- 
+  
 - Exemplo de teste encadeado:!
 - ![Detalhes de execução teste de API encadeado com datadog](./Portfolio.Documentos/Datadog/SM&CT_3.png)
 
@@ -79,9 +81,9 @@ Os testes de API foram uma parte crucial do desenvolvimento:
 - ![Detalhes de execução teste E2E com datadog](./Portfolio.Documentos/Datadog/SM&CT_4.png)
   
 - Foi utilizado o datadog RUM (Real User Monitoring) para acompanhar o desempenho da aplicação e mapear as sessões de usuários. 
-- ![Detalhes de performance do RUM](./Portfolio.Documentos/Datadog/RUM_1.png)
-- ![Detalhes estatísticas da aplicação]./Portfolio.Documentos/Datadog/(RUM_2.png)
-- ![Detalhes de sessão do usuário](./Portfolio.Documentos/Datadog/RUM_3.png)
+![Detalhes de performance do RUM](./Portfolio.Documentos/Datadog/RUM_1.png)
+![Detalhes estatísticas da aplicação](./Portfolio.Documentos/Datadog/RUM_2.png)
+![Detalhes de sessão do usuário](./Portfolio.Documentos/Datadog/RUM_3.png)
   
 #### Implantação e Entrega Final
 A última fase envolveu a configuração do ambiente de produção e a entrega final do projeto, que incluiu a documentação completa, o código-fonte e a garantia dos processos hospedados na AWS, Github e Vercel.
