@@ -147,13 +147,14 @@ export default {
                 produtos: []
             };
             this.items.forEach(item => {
-                console.log(item)
                 dto.produtos.push({ codigoProduto: item.product.codigo, nome: item.product.nome, quantidade: item.quantidade, comentario: item.comentario });
             });
 
             this.$api.Pedido.Post(this.codigoComerciante, dto).then((response) => {
-                if (response)
+                if (!response.error)
                     this.$api.UI.ShowSuccess("Novo pedido incluido para o estabelecimento comercial");
+                else
+                    this.$api.UI.ShowError(response)
             });
         },
         formatCurrency(value) {

@@ -54,7 +54,6 @@ export default {
       this.$api.Cardapio.GetOfertas().then((response) => {
         this.dealList = [];
         response.map(item => {
-          console.log(item)
           this.dealList.push(item);
         })
       })
