@@ -351,12 +351,98 @@ sequenceDiagram
 
 
 ### Diagrama C4 - Contexto
+```mermaid
+graph TD
+    subgraph "Sistema de Delivery"
+        Sistema([Sistema<br>Delivery])
+    end
 
-![Diagrama C4 - Contexto](Portfolio.Documentos/C4-Contexto.png)
+    subgraph "Usuários"
+        Cliente([Cliente])
+        Comerciante([Comerciante])
+        Administrador([Administrador])
+    end
 
+    subgraph "Notificações"
+        NotifAcesso([Notificação<br>Novo Acesso])
+        NotifRecupSenha([Notificação<br>Recuperação de Senha])
+        NotifNovoPedido([Notificação<br>Novo Pedido])
+    end
+
+    Cliente -- "Inclui pedidos" --> Sistema
+    Comerciante -- "Inclui produtos" --> Sistema
+    Administrador -- "Cadastra usuários" --> Sistema
+
+    Sistema -- "Envia notificação<br>de novo acesso" --> NotifAcesso
+    NotifAcesso -- "Para usuários<br>recém cadastrados" --> Cliente
+    NotifAcesso -- "Para usuários<br>recém cadastrados" --> Comerciante
+    NotifAcesso -- "Para usuários<br>recém cadastrados" --> Administrador
+
+    Sistema -- "Envia notificação<br>de recuperação de senha" --> NotifRecupSenha
+    NotifRecupSenha -- "Para usuários no sistema" --> Cliente
+    NotifRecupSenha -- "Para usuários no sistema" --> Comerciante
+    NotifRecupSenha -- "Para usuários no sistema" --> Administrador
+
+    Sistema -- "Envia notificação<br>de novos pedidos" --> NotifNovoPedido
+    NotifNovoPedido -- "Para comerciantes" --> Comerciante
+
+    style Sistema fill:#f9f,stroke:#333,stroke-width:2px
+    style Cliente fill:#fdd,stroke:#333,stroke-width:2px
+    style Comerciante fill:#ddf,stroke:#333,stroke-width:2px
+    style Administrador fill:#dfd,stroke:#333,stroke-width:2px
+    style NotifAcesso fill:#ff9,stroke:#333,stroke-width:2px
+    style NotifRecupSenha fill:#ff9,stroke:#333,stroke-width:2px
+    style NotifNovoPedido fill:#ff9,stroke:#333,stroke-width:2px
+
+```
 ### Diagrama C4 - Container
 
-![Diagrama C4 - Container](Portfolio.Documentos/C4-Container.png)
+```mermaid
+graph TD
+    subgraph "Aplicação Web [Vue.js]"
+        AW([Aplicação Web<br>Vue.js<br>Vercel])
+    end
+
+    subgraph "AWS ECS"
+        ECS([AWS ECS<br>API em C#])
+    end
+
+    subgraph "AWS RDS"
+        RDS([SQL Server])
+    end
+
+    subgraph "AWS SES"
+        SES([AWS SES<br>Serviço de Email])
+    end
+
+    subgraph "AWS Route 53"
+        R53([AWS Route 53<br>Hosted Zone jvst.com.br])
+    end
+
+    subgraph "AWS Load Balancer"
+        LB([AWS Load Balancer])
+    end
+
+    subgraph "Serviços"
+        ECSCluster([Serviço de pedido])
+    end
+
+    AW -- "Requisições HTTP/S" --> R53
+    R53 -- "Direciona Requisições" --> LB
+    LB -- "Distribui Requisições" --> ECS
+    ECS -- "Consulta/Atualiza" --> RDS
+    ECS -- "Envio de Emails" --> SES
+
+    ECS -.-> ECSCluster
+
+    style AW fill:#f9fc,stroke:#333,stroke-width:2px
+    style ECS fill:#f9fc,stroke:#333,stroke-width:2px
+    style RDS fill:#f9fc,stroke:#333,stroke-width:2px
+    style SES fill:#f9fc,stroke:#333,stroke-width:2px
+    style R53 fill:#f9fc,stroke:#333,stroke-width:2px
+    style LB fill:#f9fc,stroke:#333,stroke-width:2px
+    style ECSCluster fill:#f9fc,stroke:#333,stroke-width:2px
+```
 
 ---
 
