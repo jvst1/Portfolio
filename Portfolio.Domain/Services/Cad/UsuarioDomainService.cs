@@ -105,7 +105,7 @@ namespace Portfolio.Domain.Services.Cad
             CrudRepository.Update(usuario);
 
             var email = _emailService.RegistrarEmailRecuperarSenha(usuario, token);
-            _emailService.SendEmailAsync(email).GetAwaiter().GetResult();
+            _emailService.SendGmailAsync(email).GetAwaiter().GetResult();
         }
 
         public void RecuperarSenha(string requestToken, Guid requestCodigoUsuario, string requestLogin, string requestNovaSenha)

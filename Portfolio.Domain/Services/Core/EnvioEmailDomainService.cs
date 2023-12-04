@@ -10,6 +10,8 @@ using Portfolio.Infrastructure.Helpers;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Portfolio.Infrastructure;
+using System.Net.Mail;
+using System.Net;
 
 namespace Portfolio.Domain.Services.Core
 {
@@ -66,7 +68,57 @@ namespace Portfolio.Domain.Services.Core
 
             return email;
         }
-        public async Task<string> SendEmailAsync(EnvioEmail email)
+
+        public async Task<string> SendGmailAsync(EnvioEmail email)
+        {
+            try
+            {
+                using (var message = new MailMessage())
+                {
+                    message.From = new MailAddress(EmailDe);
+                    message.Subject = email.Assunto;
+                    message.To.Add(new MailAddress(email.Para));
+
+                    if (!string.IsNullOrWhiteSpace(email.Copia))
+                        message.CC.Add(new MailAddress(email.Copia));
+
+                    if (!string.IsNullOrWhiteSpace(email.CopiaOculta))
+                        message.Bcc.Add(new MailAddress(email.CopiaOculta));
+
+                    message.Body = email.Texto;
+                    message.IsBodyHtml = true;
+
+                    using (var smtpClient = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new NetworkCredential(_appSettings.Gmail.AccessKeyId, _appSettings.Gmail.SecretAccessKey),
+                        EnableSsl = true
+                    })
+                    {
+                        await smtpClient.SendMailAsync(message).ConfigureAwait(false);
+                    }
+
+                    email.MessageId = $"{DateTime.Now:yyyyMMddhhmmssFFFFF}{DateTimeOffset.Now.ToUnixTimeMilliseconds()}".Substring(5, 7);
+                    email.Enviado = true;
+                    email.DataEnvio = DateTime.Now;
+                    _emailRepository.Update(email);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("ErrorMessage: {error}; Exception: {exception}", ex.Message, ex);
+                email.MessageId = null;
+                email.Enviado = false;
+                email.DataEnvio = DateTime.Now;
+                email.Erro = $"{ex.Message};;; {ex}".Truncate(1000);
+                _emailRepository.Update(email);
+            }
+
+            return email.MessageId;
+        }
+
+
+        public async Task<string> SendSimpleEmailServiceAsync(EnvioEmail email)
         {
             try
             {

@@ -37,6 +37,8 @@ jobs:
         with:
           files: 'Portfolio.Api/appsettings.Production.json'
         env:
+          AppSettings.Gmail.AccessKeyId: ${{ secrets.APPSETTINGS_GMAIL_ACCESSKEYID }}
+          AppSettings.Gmail.SecretAccessKey: ${{ secrets.APPSETTINGS_GMAIL_SECRETACCESSKEY }}
           AppSettings.Ses.AccessKeyId: ${{ secrets.APPSETTINGS_SES_ACCESSKEYID }}
           AppSettings.Ses.SecretAccessKey: ${{ secrets.APPSETTINGS_SES_SECRETACCESSKEY }}
           AppSettings.Ses.RegionEndpoint: ${{ secrets.APPSETTINGS_SES_REGIONENDPOINT }}

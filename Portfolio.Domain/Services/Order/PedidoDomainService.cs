@@ -123,7 +123,7 @@ namespace Portfolio.Domain.Services.Order
 
 
             var email = _envioEmailDomainService.RegistrarEmailNovoPedido(comerciante, sb.ToString(), pedidoEntity.ID, pedidoEntity.Valor);
-            _envioEmailDomainService.SendEmailAsync(email).GetAwaiter().GetResult();
+            _envioEmailDomainService.SendGmailAsync(email).GetAwaiter().GetResult();
             return pedidoEntity;
         }
     }
