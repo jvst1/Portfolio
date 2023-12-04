@@ -411,8 +411,8 @@ graph TD
         RDS([SQL Server])
     end
 
-    subgraph "AWS SES"
-        SES([AWS SES<br>Serviço de Email])
+    subgraph "AWS SES/Gmail"
+        Email([AWS SES/Gmail<br>Serviço de Email])
     end
 
     subgraph "AWS Route 53"
@@ -431,14 +431,14 @@ graph TD
     R53 -- "Direciona Requisições" --> LB
     LB -- "Distribui Requisições" --> ECS
     ECS -- "Consulta/Atualiza" --> RDS
-    ECS -- "Envio de Emails" --> SES
+    ECS -- "Envio de Emails" --> Email
 
     ECS -.-> ECSCluster
 
     style AW fill:#f9fc,stroke:#333,stroke-width:2px
     style ECS fill:#f9fc,stroke:#333,stroke-width:2px
     style RDS fill:#f9fc,stroke:#333,stroke-width:2px
-    style SES fill:#f9fc,stroke:#333,stroke-width:2px
+    style Email fill:#f9fc,stroke:#333,stroke-width:2px
     style R53 fill:#f9fc,stroke:#333,stroke-width:2px
     style LB fill:#f9fc,stroke:#333,stroke-width:2px
     style ECSCluster fill:#f9fc,stroke:#333,stroke-width:2px
@@ -484,7 +484,7 @@ graph TD
 
 - **Backend**: C#
 - **Frontend**: Vue.js
-- **Notification Service**: [AWS SES](https://aws.amazon.com/pt/ses/)
+- **Notification Service**: [AWS SES](https://aws.amazon.com/pt/ses/) ou [Google Gmail](https://myaccount.google.com/)
 - **Database**: SQL Server [AWS RDS](https://aws.amazon.com/pt/rds/)
 - **Frontend Hosting**: [Vercel](https://vercel.com)
 - **Backend Hosting**: Amazon Elastic Container Service [AWS ECS](https://aws.amazon.com/pt/ecs/)
@@ -549,7 +549,7 @@ O escopo inclui o desenvolvimento de um sistema de gerenciamento de pedidos base
       2. Otimização de Assets
 
 4. **Integração com Serviços Externos**
-   1. Integração com AWS SES para notificações de e-mail
+   1. Integração com AWS SES e Gmail para notificações de e-mail
    2. Configuração de Banco de Dados em AWS RDS
    3. Configuração de serviços AWS para hospedagem de ECS
    
@@ -586,7 +586,9 @@ Este projeto utiliza diversas tecnologias e serviços. Abaixo estão as instruç
 
 - .NET SDK para C#
 - Node.js e npm para Vue.js
-- Conta ativa na AWS e realizar verificação de domínio para ter acesso ao SES (opcional para notificações)
+- Notificações:
+  - Conta ativa na AWS e realizar verificação de domínio para ter acesso ao SES (opcional)
+  - Conta ativa no Google para cadastrar app (opcional)
 - SQL Server LocalDB ou SQL Server Express para execução local do banco de dados
 
 ### Configuração do Backend em C#
@@ -631,6 +633,13 @@ Este projeto utiliza diversas tecnologias e serviços. Abaixo estão as instruç
 ### Configuração da AWS SES para notificações (Opcional)
 
 1. **Seguir passo a passo a documentação oficial https://docs.aws.amazon.com/pt_br/ses/latest/dg/send-email-concepts-process.html**
+
+### Configuração do Google para notificações (Opcional)
+
+1. Ative a autenticação de dois fatores na sua conta google.
+2. Crie uma chave de acesso para apps
+3. Utilize a chave criada e o endereço de email para autenticar nas variaveis de ambiente do projeto.
+
 
 ### Configuração do Banco de Dados
 
