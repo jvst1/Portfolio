@@ -85,8 +85,15 @@ namespace Portfolio.Domain.Services.Core
                     if (!string.IsNullOrWhiteSpace(email.CopiaOculta))
                         message.Bcc.Add(new MailAddress(email.CopiaOculta));
 
-                    message.Body = email.Texto;
                     message.IsBodyHtml = true;
+                    if (!email.Replace.IsNullOrWhiteSpace())
+                    {
+                        var variaveisParaReplace = JsonConvert.DeserializeObject<Dictionary<string, string>>(email.Replace);
+                        foreach (var variable in variaveisParaReplace)
+                            email.Texto = email.Texto.Replace(variable.Key, variable.Value);
+                    }
+                    else
+                        message.Body = email.Texto;
 
                     using (var smtpClient = new SmtpClient("smtp.gmail.com")
                     {
