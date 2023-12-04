@@ -31,7 +31,7 @@ namespace Portfolio.Api.Controllers
             }
             catch (UnauthorizedAccessException ex)
             {
-                return Unauthorized(ex.Message);
+                return Unauthorized(new { error = ex.Message });
             }
         }
 

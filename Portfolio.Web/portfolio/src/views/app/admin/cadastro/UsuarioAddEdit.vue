@@ -32,7 +32,7 @@
         </v-row>
         <v-row>
           <v-col cols="12">
-            <input-phone label="Foto de perfil" v-model="model.imageUrl" />
+            <input-text label="Foto de perfil" v-model="model.imageUrl" />
           </v-col>
         </v-row>
         <v-row>

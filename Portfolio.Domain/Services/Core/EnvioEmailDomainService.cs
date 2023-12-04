@@ -88,9 +88,10 @@ namespace Portfolio.Domain.Services.Core
                     message.IsBodyHtml = true;
                     if (!email.Replace.IsNullOrWhiteSpace())
                     {
+                        message.Body = email.Texto;
                         var variaveisParaReplace = JsonConvert.DeserializeObject<Dictionary<string, string>>(email.Replace);
                         foreach (var variable in variaveisParaReplace)
-                            message.Body = email.Texto.Replace(variable.Key, variable.Value);
+                            message.Body = message.Body.Replace(variable.Key, variable.Value);
                     }
                     else
                         message.Body = email.Texto;
@@ -105,7 +106,7 @@ namespace Portfolio.Domain.Services.Core
                         await smtpClient.SendMailAsync(message).ConfigureAwait(false);
                     }
 
-                    email.MessageId = $"{DateTime.Now:yyyyMMddhhmmssFFFFF}{DateTimeOffset.Now.ToUnixTimeMilliseconds()}".Substring(5, 7);
+                    email.MessageId = $"{DateTime.Now:yyyyMMddHHmmssFFFFF}{DateTimeOffset.Now.ToUnixTimeMilliseconds()}".Substring(5, 7);
                     email.Enviado = true;
                     email.DataEnvio = DateTime.Now;
                     _emailRepository.Update(email);
