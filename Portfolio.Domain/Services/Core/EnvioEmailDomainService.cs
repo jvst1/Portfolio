@@ -90,7 +90,7 @@ namespace Portfolio.Domain.Services.Core
                     {
                         var variaveisParaReplace = JsonConvert.DeserializeObject<Dictionary<string, string>>(email.Replace);
                         foreach (var variable in variaveisParaReplace)
-                            email.Texto = email.Texto.Replace(variable.Key, variable.Value);
+                            message.Body = email.Texto.Replace(variable.Key, variable.Value);
                     }
                     else
                         message.Body = email.Texto;
